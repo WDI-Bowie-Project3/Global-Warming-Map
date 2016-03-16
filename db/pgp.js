@@ -38,3 +38,15 @@ module.exports.editUser = (req,res,next) => {
     console.error(error);
   })
 }
+
+module.exports.deleteUser = (req,res,next) => {
+
+  db.none("delete from users where user_id=$1)",
+  [req.params.uID])
+  .then(function() {
+    next();
+  })
+  .catch(function(error){
+    console.error(error);
+  })
+}
