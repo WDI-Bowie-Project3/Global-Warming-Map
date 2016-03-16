@@ -32,5 +32,14 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
-
+# env
 .env
+
+# api key
+.apikey
+
+# scratchpad
+scratch.js
+
+# bundle
+bundle.js

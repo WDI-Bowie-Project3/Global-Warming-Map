@@ -8,6 +8,14 @@ const request       = require('request');
 
 const app = express();
 
+//route stuff
+const userRoutes = require( path.join( __dirname, '/routes/users'));
+const eventRoutes = require( path.join( __dirname, '/routes/events'));
+
+app.use('/users', userRoutes);
+app.use('/events', eventRoutes);
+
+
 // app.set('views', './views')
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
