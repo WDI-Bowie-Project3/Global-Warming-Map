@@ -101,15 +101,15 @@
   - Commit messages very explicit
 
 # Routes
-![](readmeImages/slack_for_ios_upload_720.jpg)
+![](public/readmeImages/slack_for_ios_upload_720.jpg)
 
 # ERD's
-![](readmeImages/Screen Shot 2016-03-16 at 11.22.43 AM.png)
+![](public/readmeImages/Screen Shot 2016-03-16 at 11.22.43 AM.png)
 
 # Wire Frames
 #### Homepage View
-![](readmeImages/Screen Shot 2016-03-16 at 11.21.51 AM.png)
+![](public/readmeImages/Screen Shot 2016-03-16 at 11.21.51 AM.png)
 #### Signed In View
-![](readmeImages/Screen Shot 2016-03-16 at 11.22.14 AM.png)
+![](publicreadmeImages/Screen Shot 2016-03-16 at 11.22.14 AM.png)
 #### Events View
-![](readmeImages/Screen Shot 2016-03-16 at 11.22.29 AM.png)
+![](public/readmeImages/Screen Shot 2016-03-16 at 11.22.29 AM.png)
