@@ -32,6 +32,6 @@ CREATE TABLE temperatures
 (
 id SERIAL PRIMARY KEY,
 state varchar(100),
-mean_temp integer,
-year integer
+past_temp integer,
+current_temp integer
 );
