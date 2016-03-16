@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 'use strict'
 const express       = require('express');
 const path          = require('path');
@@ -5,6 +7,7 @@ const morgan        = require('morgan');
 const bodyParser    = require('body-parser');
 const pgp           = require('pg-promise')();
 const request       = require('request');
+const db = require('./db/pgp.js');
 
 const app = express();
 
