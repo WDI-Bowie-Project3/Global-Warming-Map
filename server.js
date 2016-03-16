@@ -1,36 +1,29 @@
 'use strict'
-const express       = require('express');
-const path          = require('path');
-const morgan        = require('morgan');
-const bodyParser    = require('body-parser');
-const pgp           = require('pg-promise')();
-const request       = require('request');
+require('dotenv').config();
+const express = require('express');
+const morgan = require('morgan');
+const expressJwt = require('express-jwt');
+const path = require('path');
+const db = require('./db/pgp.js');
+const bodyParser = require('body-parser');
+const jsonwebtoken = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 const app = express();
+const userRoutes = require(path.join(__dirname, '/routes/userRoutes.js'));
 
-//route stuff
-const userRoutes = require( path.join( __dirname, '/routes/userRoutes'));
-const eventRoutes = require( path.join( __dirname, '/routes/eventRoutes'));
-app.use('/users', userRoutes);
-app.use('/events', eventRoutes);
-
-
-
-// app.set('views', './views')
+app.use(morgan('dev'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname,'public')))
-app.use(morgan('dev'))
 
-// not actually doing anything, serving root route from public folder
-app.get('/', (req,res)=>{
-  res.sendFile('index.html')
+app.get('/', (req,res) => {
+  res.sendFile(path.join(__dirname,'index.html'))
 })
 
-
-
+app.use('/users', userRoutes);
 
 const port = process.env.PORT || 3000;
-const server = app.listen(port, ()=>{
-  console.log("running on port:", port)
-})
+app.listen(port, () => {
+  console.log('running on port:', port);
+});
