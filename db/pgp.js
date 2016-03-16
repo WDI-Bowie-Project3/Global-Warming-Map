@@ -24,3 +24,17 @@ module.exports.addUser = (req,res,next) => {
     console.error(error);
   })
 }
+
+
+module.exports.editUser = (req,res,next) => {
+
+  db.one("UPDATE users SET name = $1, email = $2, password = $3, zipcode = $4 where user_id = $5)",
+  [ req.body.name, req.body.email, req.body.password, req.body.zipcode, req.params.uID])
+  .then(function(data) {
+    console.log('user updated', data)
+    next();
+  })
+  .catch(function(error){
+    console.error(error);
+  })
+}
