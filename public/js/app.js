@@ -6,12 +6,13 @@ const Router = ReactRouter.Router;
 const browserHistory = ReactRouter.browserHistory;
 const Route = ReactRouter.Route;
 const Link = ReactRouter.Link;
-const auth = require('./auth_helpers');
+const auth = require('./authComponents/auth_helpers');
 const $ = require('jquery');
-const Login = require('./login.js');
-const Logout = require('./logout.js');
-const SignUp = require('./signup.js');
 const Nav = require('./nav.js')
+const Login = require('./authComponents/login.js');
+const Logout = require('./authComponents/logout.js');
+const SignUp = require('./authComponents/signup.js');
+const EventSearchBar = require('./eventComponents/eventSearchBar');
 
 const App = React.createClass({
   getInitialState: function() {
@@ -45,6 +46,7 @@ const App = React.createClass({
     )
   }
 })
+
 
 const Dashboard = React.createClass({
   getInitialState: function() {
@@ -107,7 +109,9 @@ ReactDOM.render((
       <Route path="logout" component={Logout} />
       <Route path="new" component={SignUp} />
       <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
+
     </Route>
+
     <Route path="*" component={ErrorPage} />
   </Router>
 ), document.querySelector('#container'))
