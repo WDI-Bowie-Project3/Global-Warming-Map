@@ -1,4 +1,4 @@
-var states = [{
+var states = [{ 
 "Alabama": {
     "Reference" : {
       "value" : "63.1"
