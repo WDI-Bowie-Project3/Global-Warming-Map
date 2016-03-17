@@ -73,6 +73,7 @@ function editUser(req,res,next){
   .catch(function(error){
     console.error(error);
   })
+};
 
 module.exports.createUser = createUser;
 module.exports.loginUser = loginUser;
