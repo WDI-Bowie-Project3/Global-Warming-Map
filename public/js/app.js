@@ -96,6 +96,15 @@ function requireAuth(nextState, replace) {
   }
 }
 
+
+const ErrorPage = React.createClass({
+  render: function() {
+    return(
+      <h1>404: Not Found</h1>
+    )
+  }
+})
+
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={App}>
@@ -104,6 +113,7 @@ ReactDOM.render((
       <Route path="new" component={SignUp} />
       <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
     </Route>
+    <Route path="*" component={ErrorPage} />
   </Router>
 ), document.querySelector('#container'))
 >>>>>>> 55e53c958ddac3dc37733dca5238068cec2fd530
