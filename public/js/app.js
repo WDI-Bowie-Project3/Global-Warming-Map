@@ -6,11 +6,13 @@ const Router = ReactRouter.Router;
 const browserHistory = ReactRouter.browserHistory;
 const Route = ReactRouter.Route;
 const Link = ReactRouter.Link;
-const auth = require('./auth_helpers');
+const auth = require('./authComponents/auth_helpers');
 const $ = require('jquery');
-const Login = require('./login.js');
-const Logout = require('./logout.js');
-const SignUp = require('./signup.js');
+const Login = require('./authComponents/login.js');
+const Logout = require('./authComponents/logout.js');
+const SignUp = require('./authComponents/signup.js');
+
+const EventSearchBar = require('./eventComponents/eventSearchBar');
 
 const App = React.createClass({
   getInitialState: function() {
@@ -31,6 +33,7 @@ const App = React.createClass({
   },
 
   render: function() {
+    console.log('app render was called');
     return (
       <div>
         <ul>
@@ -45,6 +48,7 @@ const App = React.createClass({
           <li><Link to="/dashboard">Dashboard</Link> (authenticated)</li>
         </ul>
         {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
+        <EventSearchBar></EventSearchBar>
       </div>
     )
   }
@@ -116,4 +120,3 @@ ReactDOM.render((
     <Route path="*" component={ErrorPage} />
   </Router>
 ), document.querySelector('#container'))
->>>>>>> 55e53c958ddac3dc37733dca5238068cec2fd530
