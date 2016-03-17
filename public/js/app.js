@@ -33,7 +33,6 @@ const App = React.createClass({
   },
 
   render: function() {
-    console.log('app render was called');
     return (
       <div>
         <ul>
@@ -46,9 +45,10 @@ const App = React.createClass({
           </li>
           <li><Link to="/new">Sign Up</Link></li>
           <li><Link to="/dashboard">Dashboard</Link> (authenticated)</li>
+
         </ul>
         {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
-        <EventSearchBar></EventSearchBar>
+        <TestingSlot/>
       </div>
     )
   }
@@ -116,7 +116,9 @@ ReactDOM.render((
       <Route path="logout" component={Logout} />
       <Route path="new" component={SignUp} />
       <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
+
     </Route>
+
     <Route path="*" component={ErrorPage} />
   </Router>
 ), document.querySelector('#container'))
