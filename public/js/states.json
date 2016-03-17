@@ -1,5 +1,5 @@
 var states = [{
-"Alabama": {
+"AL": {
     "Reference" : {
       "value" : "63.1"
     },
@@ -439,7 +439,7 @@ var states = [{
     "value": "62.8",
     "anomaly": "-0.3"
     },
-    ""200412": {
+    "200412": {
     "value": "63.3",
     "anomaly": "0.2"
     },
@@ -463,23 +463,23 @@ var states = [{
     "value": "62.9",
     "anomaly": "-0.2"
     },
-    201012": {
+    "201012": {
     "value": "62.7",
     "anomaly": "-0.4"
     },
-    201112": {
+    "201112": {
     "value": "63.8",
     "anomaly": "0.7"
     },
-    201212": {
+    "201212": {
     "value": "64.9",
     "anomaly": "1.8"
     },
-    201312": {
+    "201312": {
     "value": "62.6",
     "anomaly": "-0.5"
     },
-    201412": {
+    "201412": {
     "value": "62.0",
     "anomaly": "-1.1"
     },
@@ -488,7 +488,7 @@ var states = [{
     "anomaly": "1.5"
     }
 },
-"Alaska": {
+"AK": {
       "Reference" : {
         "value" : "26.0"
       },
@@ -857,7 +857,7 @@ var states = [{
       "anomaly": "3.8"
       }
     },
-"Arizona": {
+"AZ": {
   "Reference" : {
     "value" : "59.6"
   },
@@ -1346,7 +1346,7 @@ var states = [{
   "anomaly": "2.2"
   }
 },
-"Arkansas": {
+"AR": {
   "Reference" : {
     "value" : "60.5"
   },
@@ -1835,7 +1835,7 @@ var states = [{
   "anomaly": "0.9"
   }
 },
-"California": {
+"CA": {
   "Reference" : {
     "value" : "57.6"
   },
@@ -2324,7 +2324,7 @@ var states = [{
   "anomaly": "3.2"
   }
 },
-"Colorado": {
+"CO": {
   "Reference" : {
     "value" : "44.8"
   },
@@ -2813,7 +2813,7 @@ var states = [{
   "anomaly": "2.7"
   }
 },
-"Connecticut": {
+"CT": {
   "Reference" : {
     "value" : "48.3"
   },
@@ -3302,7 +3302,7 @@ var states = [{
   "anomaly": "1.6"
   }
 },
-"Delaware": {
+"DE": {
   "Reference" : {
     "value" : "54.4"
   },
@@ -3791,7 +3791,7 @@ var states = [{
   "anomaly": "2.0"
   }
 },
-"Florida": {
+"FL": {
   "Reference" : {
     "value" : "70.3"
   },
@@ -4280,7 +4280,7 @@ var states = [{
   "anomaly": "3.0"
   }
 },
-"Georgia": {
+"GA": {
   "Reference" : {
     "value" : "63.5"
   },
@@ -4769,7 +4769,7 @@ var states = [{
   "anomaly": "1.8"
   }
 },
-"Idaho": {
+"ID": {
   "Reference" : {
     "value" : "42.8"
   },
@@ -5258,7 +5258,7 @@ var states = [{
   "anomaly": "3.6"
   }
 },
-"Illinois": {
+"IL": {
   "Reference" : {
     "value" : "51.7"
   },
@@ -5747,7 +5747,7 @@ var states = [{
   "anomaly": "1.2"
   }
 },
-"Indiana": {
+"IN": {
   "Reference" : {
     "value" : "51.5"
   },
@@ -6236,7 +6236,7 @@ var states = [{
   "anomaly": "0.8"
   }
 },
-"Iowa": {
+"IA": {
   "Reference" : {
     "value" : "47.6"
   },
@@ -6725,7 +6725,7 @@ var states = [{
   "anomaly": "1.7"
   }
 },
-"Kansas": {
+"KS": {
   "Reference" : {
     "value" : "54.3"
   },
@@ -7214,7 +7214,7 @@ var states = [{
   "anomaly": "2.0"
   }
 },
-"Kentucky": {
+"KY": {
   "Reference" : {
     "value" : "55.6"
   },
@@ -7703,7 +7703,7 @@ var states = [{
   "anomaly": "1.0"
   }
 },
-"Louisiana": {
+"LA": {
   "Reference" : {
     "value" : "66.5"
   },
@@ -8192,7 +8192,7 @@ var states = [{
   "anomaly": "1.6"
   }
 },
-"Maine": {
+"ME": {
   "Reference" : {
     "value" : "40.3"
   },
@@ -8681,7 +8681,7 @@ var states = [{
   "anomaly": "0.8"
   }
 },
-"Maryland": {
+"MD": {
   "Reference" : {
     "value" : "54.0"
   },
@@ -9170,7 +9170,7 @@ var states = [{
   "anomaly": "1.5"
   }
 },
-"Massachusetts": {
+"MA": {
   "Reference" : {
     "value" : "47.2"
   },
@@ -9659,7 +9659,7 @@ var states = [{
   "anomaly": "1.3"
   }
 },
-"Michigan": {
+"MI": {
   "Reference" : {
     "value" : "43.8"
   },
@@ -10148,7 +10148,7 @@ var states = [{
   "anomaly": "1.3"
   }
 },
-"Minnesota": {
+"MN": {
   "Reference" : {
     "value" : "40.3"
   },
@@ -10637,7 +10637,7 @@ var states = [{
   "anomaly": "3.2"
   }
 },
-"Mississippi": {
+"MS": {
   "Reference" : {
     "value" : "63.7"
   },
@@ -11126,7 +11126,7 @@ var states = [{
   "anomaly": "1.5"
   }
 },
-"Missouri": {
+"MO": {
   "Reference" : {
     "value" : "54.6"
   },
@@ -11615,7 +11615,7 @@ var states = [{
   "anomaly": "1.2"
   }
 },
-"Montana": {
+"MT": {
   "Reference" : {
     "value" : "41.3"
   },
@@ -12104,7 +12104,7 @@ var states = [{
   "anomaly": "3.6"
   }
 },
-"Nebraska": {
+"NE": {
   "Reference" : {
     "value" : "48.5"
   },
@@ -12593,7 +12593,7 @@ var states = [{
   "anomaly": "2.3"
   }
 },
-"Nevada": {
+"NV": {
   "Reference" : {
     "value" : "49.7"
   },
@@ -13082,7 +13082,7 @@ var states = [{
   "anomaly": "3.1"
   }
 },
-"New_Hampshire": {
+"NH": {
   "Reference" : {
     "value" : "42.6"
   },
@@ -13571,7 +13571,7 @@ var states = [{
   "anomaly": "1.0"
   }
 },
-"New_Jersey": {
+"NJ": {
   "Reference" : {
     "value" : "51.7"
   },
@@ -14060,7 +14060,7 @@ var states = [{
   "anomaly": "2.2"
   }
 },
-"New_Mexico": {
+"NM": {
   "Reference" : {
     "value" : "53.1"
   },
@@ -14549,7 +14549,7 @@ var states = [{
   "anomaly": "1.8"
   }
 },
-"New_York": {
+"NY": {
   "Reference" : {
     "value" : "44.7"
   },
@@ -15038,7 +15038,7 @@ var states = [{
   "anomaly": "0.9"
   }
 },
-"North_Carolina": {
+"NC": {
   "Reference" : {
     "value" : "58.7"
   },
@@ -15527,7 +15527,7 @@ var states = [{
   "anomaly": "1.8"
   }
 },
-"North_Dakota": {
+"ND": {
   "Reference" : {
     "value" : "39.8"
   },
@@ -16016,7 +16016,7 @@ var states = [{
   "anomaly": "3.6"
   }
 },
-"Ohio": {
+"OH": {
   "Reference" : {
     "value" : "50.6"
   },
@@ -16505,7 +16505,7 @@ var states = [{
   "anomaly": "1.1"
   }
 },
-"Oklahoma": {
+"OK": {
   "Reference" : {
     "value" : "59.8"
   },
@@ -16994,7 +16994,7 @@ var states = [{
   "anomaly": "1.1"
   }
 },
-"Oregon": {
+"OR": {
   "Reference" : {
     "value" : "46.6"
   },
@@ -17483,7 +17483,7 @@ var states = [{
   "anomaly": "3.8"
   }
 },
-"Pennsylvania": {
+"PA": {
   "Reference" : {
     "value" : "48.3"
   },
@@ -17972,7 +17972,7 @@ var states = [{
   "anomaly": "1.1"
   }
 },
-"Rhode_Island": {
+"RI": {
   "Reference" : {
     "value" : "48.8"
   },
@@ -18461,7 +18461,7 @@ var states = [{
   "anomaly": "1.7"
   }
 },
-"South_Carolina": {
+"SC": {
   "Reference" : {
     "value" : "62.5"
   },
@@ -18950,7 +18950,7 @@ var states = [{
   "anomaly": "2.0"
   }
 },
-"South_Dakota": {
+"SD": {
   "Reference" : {
     "value" : "44.7"
   },
@@ -19439,7 +19439,7 @@ var states = [{
   "anomaly": "2.9"
   }
 },
-"Tennessee": {
+"TN": {
   "Reference" : {
     "value" : "57.8"
   },
@@ -19928,7 +19928,7 @@ var states = [{
   "anomaly": "1.2"
   }
 },
-"Texas": {
+"TX": {
   "Reference" : {
     "value" : "64.8"
   },
@@ -20417,7 +20417,7 @@ var states = [{
   "anomaly": "1.0"
   }
 },
-"Utah": {
+"UT": {
   "Reference" : {
     "value" : "47.7"
   },
@@ -20906,7 +20906,7 @@ var states = [{
   "anomaly": "3.2"
   }
 },
-"Vermont": {
+"VT": {
   "Reference" : {
     "value" : "41.6"
   },
@@ -21395,7 +21395,7 @@ var states = [{
   "anomaly": "1.0"
   }
 },
-"Virginia": {
+"VA": {
   "Reference" : {
     "value" : "55.0"
   },
@@ -21884,7 +21884,7 @@ var states = [{
   "anomaly": "1.5"
   }
 },
-"Washington": {
+"WA": {
   "Reference" : {
     "value" : "46.3"
   },
@@ -22373,7 +22373,7 @@ var states = [{
   "anomaly": "3.7"
   }
 },
-"West_Virginia": {
+"WV": {
   "Reference" : {
     "value" : "51.7"
   },
@@ -22862,7 +22862,7 @@ var states = [{
   "anomaly": "1.4"
   }
 },
-"Wisconsin": {
+"WI": {
   "Reference" : {
     "value" : "42.6"
   },
@@ -23351,7 +23351,7 @@ var states = [{
   "anomaly": "2.2"
   }
 },
-"Wyoming": {
+"WY": {
   "Reference" : {
     "value" : "40.9"
   },
