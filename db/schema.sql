@@ -7,9 +7,9 @@ DROP TABLE if exists temperatures CASCADE;
 CREATE TABLE users
 (
   user_id SERIAL PRIMARY KEY,
-  name varchar(25),
   email varchar(100),
-  password varchar(500),
+  password_digest varchar(500),
+  name varchar(25),
   zipcode integer
 );
 
