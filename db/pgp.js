@@ -4,8 +4,8 @@ const salt   = bcrypt.genSaltSync(10);
 const pgp    = require('pg-promise')({});
 
 const cn = {
-    host: 'localhost', // server name or IP address;
-    port: 5432,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
     database: process.env.DB_NAME,
     user: process.env.DB_USER,
     password: process.env.DB_PASS
@@ -62,6 +62,18 @@ function loginUser(req, res, next) {
 }
 
 
+function editUser(req,res,next){
+
+  db.one("UPDATE users SET name = $1, email = $2, password = $3, zipcode = $4 where user_id = $5)",
+  [ req.body.name, req.body.email, req.body.password, req.body.zipcode, req.params.uID])
+  .then(function(data) {
+    console.log('user updated', data)
+    next();
+  })
+  .catch(function(error){
+    console.error(error);
+  })
 
 module.exports.createUser = createUser;
 module.exports.loginUser = loginUser;
+module.exports.editUser = editUser;
