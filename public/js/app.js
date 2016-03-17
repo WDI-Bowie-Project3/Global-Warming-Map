@@ -1,88 +1,109 @@
-'use strict'
+'use strict';
 const React = require('react');
 const ReactDOM = require('react-dom');
+const ReactRouter = require('react-router');
+const Router = ReactRouter.Router;
+const browserHistory = ReactRouter.browserHistory;
+const Route = ReactRouter.Route;
+const Link = ReactRouter.Link;
+const auth = require('./auth_helpers');
 const $ = require('jquery');
-
-
-//do we want to start implementing the 'import' pattern?
-// import { browserHistory } from 'react-router';
-const browserHistory = require('react-router');
-const Router = require('react-router').Router;
-const Route = require('react-router').Route;
-const Link = require('react-router').Link;
+const Login = require('./login.js');
+const Logout = require('./logout.js');
+const SignUp = require('./signup.js');
 
 const App = React.createClass({
-  getInitialState () {
-
+  getInitialState: function() {
     return {
-      placeholderObj: {}
+      loggedIn: auth.loggedIn()
     }
-
   },
 
-  placeholderAuth (loggedIn) {
-    //stuff to update auth?
+  updateAuth: function(loggedIn) {
+    this.setState({
+      loggedIn: loggedIn
+    })
   },
 
-  componentWillMount () {
-    //stuff to trigger on App mount/render
+  componentWillMount: function() {
+    auth.onChange = this.updateAuth
+    auth.login()
   },
 
-  render () {
-
-
-    return(
+  render: function() {
+    return (
       <div>
-
-        <NavBar></NavBar>
-        <DisplayMapOrEvents></DisplayMapOrEvents>
-        <Footer>{/* i don't think we actually have a footer */}</Footer>
-
+        <ul>
+          <li>
+            {this.state.loggedIn ? (
+              <Link to="/logout">Log out</Link>
+            ) : (
+              <Link to="/login">Sign in</Link>
+            )}
+          </li>
+          <li><Link to="/new">Sign Up</Link></li>
+          <li><Link to="/dashboard">Dashboard</Link> (authenticated)</li>
+        </ul>
+        {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
       </div>
     )
   }
 })
 
-function placeholderRequireAuth (a,b) {
-  //stuff for auth
+
+const Dashboard = React.createClass({
+  getInitialState: function() {
+    return {
+      user: ''
+    }
+  },
+
+  getUserInfo: function(event) {
+    event.preventDefault();
+
+    $.ajax({
+      url: 'users/:uID',
+      beforeSend: function( xhr ) {
+        xhr.setRequestHeader("Authorization", auth.getToken());
+      }
+    }).complete((data) => {
+      console.log(data);
+      // this.setState({ user: data.agent.email });
+    })
+  },
+
+  render: function() {
+    const token = auth.getToken()
+
+    return (
+      <div>
+        <h1>Dashboard</h1>
+        <p>Successfully Logged In!</p>
+        <p>{this.state.me}</p>
+        <button onClick={this.getUserInfo}>Show My Info</button>
+      </div>
+    )
+  }
+})
+
+
+function requireAuth(nextState, replace) {
+  if (!auth.loggedIn()) {
+    replace({
+      pathname: '/login',
+      state: { nextPathname: nextState.location.pathname }
+    })
+  }
 }
 
-
-
-ReactDOM.render(
-  <Router
-    history = {browserHistory}
-    >
-    <Route
-      path = "/"
-      component = {App}>
-      <Route
-        path = "Login"
-        component = {Login}>
-      </Route>
-      <Route
-        path = "Logout"
-        component = {Logout}>
-      </Route>
-      <Route
-        path = "/UserEventList"
-        component = {UserEventList}
-        onEnter = {requireAuth}> {/* contingent upon 'state' of map/event button. requireAuth isn't actually defined yet */}
-        <Route
-          path = "/SpecificEvent"
-          component = {SpecificEvent}>
-          {/* I'm not going to drill down into exactly what SpecificEvent shows, but it will likely be info and buttons */}
-        </Route>
-
-      </Route>
-      <Route
-        path = "/Map"
-        component = {Map}> {/* contingent upon 'state' of map/event button */}
-
-      </Route>
-
-
+ReactDOM.render((
+  <Router history={browserHistory}>
+    <Route path="/" component={App}>
+      <Route path="login" component={Login} />
+      <Route path="logout" component={Logout} />
+      <Route path="new" component={SignUp} />
+      <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
     </Route>
-
   </Router>
- document.querySelector('#container') );
+), document.querySelector('#container'))
+>>>>>>> 55e53c958ddac3dc37733dca5238068cec2fd530
