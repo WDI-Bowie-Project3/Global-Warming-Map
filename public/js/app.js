@@ -12,7 +12,8 @@ const Nav = require('./nav.js')
 const Login = require('./authComponents/login.js');
 const Logout = require('./authComponents/logout.js');
 const SignUp = require('./authComponents/signup.js');
-const EventSearchBar = require('./eventComponents/eventSearchBar');
+const EventSearchBar = require('./eventComponents/eventSearchBar.js');
+const EventPage = require('./eventComponents/eventPage.js')
 
 const App = React.createClass({
   getInitialState: function() {
@@ -38,7 +39,7 @@ const App = React.createClass({
   render: function() {
     return (
       <div>
-        <Nav loggedIn={this.state.loggedIn}/>
+        <Nav loggedIn={this.state.loggedIn} />
         <nav className="aside-1">
         {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
         </nav>
@@ -109,9 +110,8 @@ ReactDOM.render((
       <Route path="logout" component={Logout} />
       <Route path="new" component={SignUp} />
       <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
-
     </Route>
-
+    <Route path="/users/:uID/events" component={EventPage} />
     <Route path="*" component={ErrorPage} />
   </Router>
 ), document.querySelector('#container'))

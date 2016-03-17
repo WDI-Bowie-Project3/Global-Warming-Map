@@ -6,11 +6,15 @@ const auth = require('./authComponents/auth_helpers');
 const Login = require('./authComponents/login.js');
 const Logout = require('./authComponents/logout.js');
 const SignUp = require('./authComponents/signup.js');
+const GoToEventPage = require('./eventComponents/GoToEventPage.js');
 
 const Nav = React.createClass({
   render: function(){
     return (
       <nav className="navbar">
+        <nav>
+        {this.props.loggedIn ? <GoToEventPage loggedIn={this.props.loggedIn}/> : <nav></nav>}
+        </nav>
         <nav className="nav-header">Climate Change Map</nav>
         <nav>
         {this.props.loggedIn ? (

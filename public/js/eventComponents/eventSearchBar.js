@@ -20,21 +20,20 @@ const EventSearchBar = React.createClass({
     //do thing with search term entered
   },
 
-  render : function () {
+  render : function(){
 
 
     return (
       <div className="searchContainer">
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          <input
-            ref="search"
-            placeholder="STATEPLACEHOLDER"></input>
-          <button
-            type="submit">Search</button>
-        </label>
-
-      </form>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            <input
+              ref="search"
+              placeholder="STATEPLACEHOLDER"></input>
+            <button
+              type="submit">Search</button>
+          </label>
+        </form>
       </div>
     )
   }
