@@ -20,6 +20,7 @@ const SignUp = React.createClass({
 
   render: function(){
     return (
+      <nav className="aside-1">
       <form ref="createUserForm" onSubmit={this.handleSubmit}>
         <label><input ref="name" placeholder="Name" /></label>
         <label><input ref="zipcode" placeholder="zipcode" /></label>
@@ -27,6 +28,7 @@ const SignUp = React.createClass({
         <label><input ref="password" placeholder="password" /></label>
         <button type="submit">Sign Up</button>
       </form>
+      </nav>
     )
   }
 })

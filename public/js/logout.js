@@ -8,7 +8,7 @@ const Logout = React.createClass({
   },
 
   render: function() {
-    return <p>You are now logged out</p>
+    return <p className="aside-1">Logged Out!</p>
   }
 })
 

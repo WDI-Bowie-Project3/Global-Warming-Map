@@ -36,14 +36,16 @@ const Login = React.createClass({
 
   render: function() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label><input ref="email" placeholder="email" defaultValue="bryce2" /></label>
-        <label><input ref="pass" placeholder="password" /></label>
-        <button type="submit">login</button>
-        {this.state.error && (
-          <p>Bad login information</p>
-        )}
-      </form>
+      <nav className="aside-1">
+        <form onSubmit={this.handleSubmit}>
+          <label><input ref="email" placeholder="email" defaultValue="bryce2" /></label>
+          <label><input ref="pass" placeholder="password" /></label>
+          <button type="submit">login</button>
+          {this.state.error && (
+            <p>Bad login information</p>
+          )}
+        </form>
+      </nav>
     )
   }
 })

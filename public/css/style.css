@@ -1,0 +1,31 @@
+.navbar {
+  font-size: 20px;
+  display: flex;
+  justify-content: flex-end;;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  background-color: red;
+  color: white;
+  padding: 15px;
+}
+a {
+  text-decoration: none;
+  color: white;
+  border: 2px solid white;
+  margin: 10px;
+  padding: 5px;
+}
+
+.aside-1 {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  padding-right: 5px;
+  margin-right: 5px;
+}
+
+.nav-header{
+  font-size: 30px;
+  margin-right: 35%;
+  margin-left: 20px;
+}

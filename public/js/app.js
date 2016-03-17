@@ -11,6 +11,7 @@ const $ = require('jquery');
 const Login = require('./login.js');
 const Logout = require('./logout.js');
 const SignUp = require('./signup.js');
+const Nav = require('./nav.js')
 
 const App = React.createClass({
   getInitialState: function() {
@@ -30,21 +31,16 @@ const App = React.createClass({
     auth.login()
   },
 
+  // <li><Link to="/dashboard">Dashboard</Link> (authenticated)</li>
+  // not sure how we want use this
+
   render: function() {
     return (
       <div>
-        <ul>
-          <li>
-            {this.state.loggedIn ? (
-              <Link to="/logout">Log out</Link>
-            ) : (
-              <Link to="/login">Sign in</Link>
-            )}
-          </li>
-          <li><Link to="/new">Sign Up</Link></li>
-          <li><Link to="/dashboard">Dashboard</Link> (authenticated)</li>
-        </ul>
+        <Nav loggedIn={this.state.loggedIn}/>
+        <nav className="aside-1">
         {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
+        </nav>
       </div>
     )
   }
