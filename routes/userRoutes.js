@@ -28,13 +28,16 @@ userRoutes.post('/login', db.loginUser, ( req, res ) => {
   res.json( { agent: res.rows, token: token } );
 })
 
+userRoutes.get('/:uID', (req,res)=>{
+  res.send("get the user info routeeeee")
+})
+
 
 //:3000/users/:uID/events
-userRoutes.route('/:uID/events')
-  //allow user to get list of events they've signed up for
-  .get(/*db.getUserEventList,*/ (req,res)=>{
-    res.send('hit the get user info route')
-  })
+// userRoutes.route('/:uID/events')
+//   //allow user to get list of events they've signed up for
+//   .get(/*db.getUserEventList,*/ (req,res)=>{
+//   })
 //   //does this pull from a join table? then do something with the event IDs to bring up the info? the 'something with event IDs' is probably the '/:uID/events/:eID' route below
 //   //*****'UserEventList' sounds like a join table *****
 //

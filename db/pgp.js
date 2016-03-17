@@ -28,7 +28,7 @@ function createUser(req, res, next) {
   createSecure(req.body.email, req.body.password, saveUser);
 
   function saveUser(email, hash) {
-    db.none("INSERT INTO users (email, password_digest) VALUES($1, $2);", [email, hash])
+    db.none("INSERT INTO users (email, password_digest, name, zipcode) VALUES($1, $2, $3, $4);", [email, hash, req.body.name, req.body.zipcode])
     .then(function (data) {
       // success;
       console.log(data);
