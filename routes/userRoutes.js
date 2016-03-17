@@ -23,10 +23,12 @@ userRoutes.post('/login', db.loginUser, ( req, res ) => {
 
 
 
-// //:3000/users/:uID
-// userRoutes.route('/:uID')
-//   //allow user to see their basic info
-//   .get(/*db.getSingleUser,*/ basicTest)
+//:3000/users/:uID
+userRoutes.route('/:uID')
+  //allow user to see their basic info
+  .get(/*db.getSingleUser,*/ (req,res)=>{
+    res.send("get the user info")
+  })
 //
 //   //allow user to update their basic info
 //   .put(/*db.updateSingleUser,*/ basicTest)
