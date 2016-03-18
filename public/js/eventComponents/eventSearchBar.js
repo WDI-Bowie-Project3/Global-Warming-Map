@@ -1,5 +1,6 @@
 'use strict'
 const React = require('react');
+const eventHelp = require('./event_helpers');
 
 //do we want button/input components, or just stick wtih html construction for these?
 // const Button = require('./../basics/button');
@@ -15,17 +16,24 @@ const EventSearchBar = React.createClass({
   handleSubmit : function (event) {
     event.preventDefault();
 
-    const searchTerm = this.refs.search.value;
+    searchTerm = this.refs.search.value;
 
-    //do thing with search term entered
+    //do thing with search term entered. have to pass that to eventSearchResults somehow
+    eventHelp.eventSearch(searchTerm);
+
+    //may need to do something like ...
+    //let this.props.results = eventHelp.eventSearch(searchTerm);
+    //instead?
   },
 
   render : function () {
-
+    let searchTerm;
 
     return (
       <div className="searchContainer">
-      <form onSubmit={this.handleSubmit}>
+      <form
+        results={[]}
+        onSubmit={this.handleSubmit}>
         <label>
           <input
             ref="search"
