@@ -9,7 +9,12 @@ const MapView = React.createClass({
 
 
     return (
-      <p>test render of MapView</p>
+      <div id="mapViewContainer">
+        <ul>
+          <li>{this.props.yearShown}</li>
+        </ul>
+
+      </div>
     )
   }
 })
