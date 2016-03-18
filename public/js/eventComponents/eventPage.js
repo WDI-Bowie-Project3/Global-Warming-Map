@@ -13,9 +13,9 @@ const EventView = React.createClass({
       }
   },
 
-  findMeetUps: function(){
-
-    $.ajax('/events')
+  findMeetUps: function(searchTerm){
+    const searchZip = {zip: searchTerm}
+    $.ajax('/events', searchZip)
     .done(function(data){
       console.log(data)
     })

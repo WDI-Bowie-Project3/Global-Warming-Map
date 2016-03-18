@@ -37,8 +37,9 @@ eventRoutes.route('/')
       qs: {
         key: process.env.apiKey,
         sign: true,
-        zip: '11221',
-        category: '4'
+        zip: req.query.zip,
+        category: '4',
+        page: '10'
       },
       json: true
     }, function(err,response,body){
