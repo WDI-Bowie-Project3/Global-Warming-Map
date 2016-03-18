@@ -26,6 +26,11 @@ app.use(bodyParser.json());
 app.use('/users', userRoutes);
 app.use('/events', eventRoutes);
 
+app.get('/maps', (req,res)=>{
+  res.sendFile(path.join(__dirname, 'public/map_test.html'))
+})
+
+
 app.get('*', (req,res)=>{
   res.sendFile(path.join(__dirname, 'public/index.html'))
 })
