@@ -8,7 +8,7 @@ const GoToEventPage = React.createClass({
   render: function(){
     return (
       <nav>
-        <Link to="/users/:uID/events"> My Events</Link>
+        <Link to="/users/:uID/events">Events</Link>
       </nav>
     )
   }
