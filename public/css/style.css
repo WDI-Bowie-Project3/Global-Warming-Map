@@ -27,3 +27,44 @@ a {
   margin-right: 35%;
   margin-left: 20px;
 }
+
+
+
+
+
+        .state
+        {
+        	fill:'#0fffff';
+        	stroke:;
+        	stroke-width:1;
+        	stroke-opacity:1;
+        }
+        .territory
+        {
+        	opacity:0;
+        	fill:#E0E0E0;
+        	stroke:#646464;
+        	stroke-width:1;
+        	stroke-opacity:1;
+        }
+        .territoryborder
+        {
+        	opacity:0;
+        	fill:none;
+        	stroke:#A9A9A9;
+        	stroke-width:2;
+        }
+        .border
+        {
+        	opacity:1;
+        	fill:none;
+        	stroke:#A9A9A9;
+        	stroke-width:2;
+        }
+        .circle
+        {
+           opacity:1;
+           fill:#E0E0E0;
+           stroke:#646464;
+           stroke-width:1;
+        }
