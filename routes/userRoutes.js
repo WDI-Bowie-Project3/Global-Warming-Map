@@ -4,7 +4,7 @@ const jwt         = require('jsonwebtoken');
 const userRoutes  = express.Router();
 const bodyParser  = require('body-parser');
 const db          = require('../db/pgp.js');
-const secret      = 'so totally secret';
+const secret      = process.env.secret;
 
 
 const basicTest = (req,res) => {
