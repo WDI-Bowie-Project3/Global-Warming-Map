@@ -17,6 +17,7 @@ const EventSearchBar = React.createClass({
 
     const searchTerm = this.refs.search.value;
 
+    this.props.findMeetUps()
     //do thing with search term entered
   },
 
