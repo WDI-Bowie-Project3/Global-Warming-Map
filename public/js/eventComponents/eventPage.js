@@ -9,17 +9,18 @@ const $ = require('jquery');
 const EventView = React.createClass({
   getInitialState: function(){
       return {
-        searchResult: {}
+        searchResult: {elton: "hi"}
       }
   },
 
   findMeetUps: function(searchTerm){
+    const that = this;
     const searchZip = {zip: searchTerm}
-    $.ajax('/events', searchZip)
+    $.get('/events', searchZip)
     .done(function(data){
-      console.log(data)
+      console.log(data);
+      console.log("this.state : ",that.state.searchResult);
     })
-
   },
 
   render: function(){
