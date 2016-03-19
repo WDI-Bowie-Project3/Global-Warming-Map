@@ -19,6 +19,7 @@ const EventSearchBar = React.createClass({
 
     this.props.findMeetUps(searchTerm)
     //do thing with search term entered
+    this.refs.searchForm.reset()
   },
 
   render : function(){
@@ -26,13 +27,10 @@ const EventSearchBar = React.createClass({
 
     return (
       <div className="searchContainer">
-        <form onSubmit={this.handleSubmit}>
+        <form ref="searchForm" onSubmit={this.handleSubmit}>
           <label>
-            <input
-              ref="search"
-              placeholder="STATEPLACEHOLDER"></input>
-            <button
-              type="submit">Search</button>
+            <input ref="search" placeholder="Zipcode"></input>
+            <button type="submit">Search</button>
           </label>
         </form>
       </div>

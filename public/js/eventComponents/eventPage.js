@@ -5,11 +5,12 @@ const Link = ReactRouter.Link;
 const EventSearchBar = require('./EventSearchBar.js');
 const Nav = require('../nav.js');
 const $ = require('jquery');
+const EventSearchResults = require('./eventSearchResults.js')
 
 const EventView = React.createClass({
   getInitialState: function(){
       return {
-        searchResult: {elton: "hi"}
+        searchResults: {}
       }
   },
 
@@ -18,8 +19,10 @@ const EventView = React.createClass({
     const searchZip = {zip: searchTerm}
     $.get('/events', searchZip)
     .done(function(data){
-      console.log(data);
-      console.log("this.state : ",that.state.searchResult);
+      that.state.searchResults = data;
+      that.setState({searchResults: that.state.searchResults})
+      // sets state to array of objects
+      // objects are groups in relation to zipcode entered
     })
   },
 
@@ -30,7 +33,7 @@ const EventView = React.createClass({
           <nav className="map-nav"><Link to="/">Map</Link></nav>
           <nav className="nav-header">Climate Change Map</nav>
         </nav>
-        <EventSearchBar findMeetUps={this.findMeetUps} />
+        <EventSearchBar findMeetUps={this.findMeetUps} showGroups={this.displayMeetUpGroups}/>
       </div>
     )
   }
