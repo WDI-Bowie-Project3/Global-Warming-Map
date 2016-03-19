@@ -22,10 +22,13 @@ const EventSearchResults = React.createClass({
     //   </ul>
     //
     // ) try this when you actually have props
+    // {display.map( (el) => {
+    //   return <li><ShowEvent meetUpEvent={el} key={new Date()} /></li>
+    // })}
     return (
       <ul>
-        {display.map( (el) => {
-          return <li><ShowEvent meetUpEvent={el} key={new Date()} /></li>
+        {Object.keys(this.props.searchResults).map(function(key){
+          console.log(key.name)
         })}
       </ul>
 

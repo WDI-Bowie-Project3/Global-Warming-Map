@@ -1,7 +1,9 @@
 'use strict'
 const React = require('react');
 // const eventHelp = require('./event_helpers');
-
+// having trouble with eventHelpers because they need to setState
+// but don't have access to it, can't pass it b/c state
+// shows up on the other side as props
 
 
 const EventSearchBar = React.createClass({
