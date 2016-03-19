@@ -111,7 +111,7 @@ ReactDOM.render((
       <Route path="new" component={SignUp} />
       <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
     </Route>
-    <Route path="/users/:uID/events" component={EventPage} />
+    <Route path="/meetups" component={EventPage} />
     <Route path="*" component={ErrorPage} />
   </Router>
 ), document.querySelector('#container'))

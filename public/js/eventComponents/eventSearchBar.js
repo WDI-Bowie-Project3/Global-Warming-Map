@@ -1,6 +1,9 @@
 'use strict'
 const React = require('react');
-const eventHelp = require('./event_helpers');
+// const eventHelp = require('./event_helpers');
+
+
+
 const EventSearchBar = React.createClass({
   //contextTypes : {}
   //see login.js for more info if it ends up being required.
@@ -12,7 +15,7 @@ const EventSearchBar = React.createClass({
 
     let searchTerm = this.refs.search.value;
 
-    eventHelp.findMeetUps(searchTerm)
+    this.props.findMeetUps(searchTerm)
     //do thing with search term entered
     this.refs.searchForm.reset()
   },
@@ -27,11 +30,11 @@ const EventSearchBar = React.createClass({
           </label>
         </form>
       </div>
-  },
+    )
+  }
   //may need to do something like ...
   //let this.props.results = eventHelp.eventSearch(searchTerm);
   //instead?
-  //eventHelp.eventSearch(searchTerm);
 })
 
 module.exports = EventSearchBar;
