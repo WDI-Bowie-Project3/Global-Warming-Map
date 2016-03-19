@@ -2,9 +2,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('./../db/pgp');
-
+const request = require('request');
 const eventRoutes = express.Router();
-module.exports = eventRoutes;
 
 const basicTest = (req,res) => {
   res.send( `${req.method} succeeded, but is not yet implemented. regular test` );
@@ -13,18 +12,40 @@ const basicTest1 = (req,res) => {
   res.send( `${req.method} succeeded, but is not yet implemented. test1` );
 }
 
-
-//:3000/events/searchEvents -> ?? this and the get below have a lot of reasons to be in the same space. not sure how I should be separating them.
-eventRoutes.route('/searchEvents')
-  //this will need to return a search bar component. events require location information to find them in API. once location is entered, we can hit the .get on '/'
-  .get(/* db.searchEventsByCriteria */ basicTest)
-
+function makeRequest(req,res,next) {
+  let conn = {
+    url: 'https://api.meetup.com/2/events',
+    qs: {
+      key: process.env.apiKey,
+      sign: true,
+      group_urlname: 'Peoples-Climate-March-Satellite-Events'
+    },
+    json: true
+  };
+  request(conn, (err,res,body)=>{
+    res.events = body;
+    console.log(res.events.results[0]);
+    next()
+  })
+}
 
 //:3000/events
 eventRoutes.route('/')
-  //use info from search bar above to get a collection of events
-  .get(/* db.showEventsBasedOnInput */ basicTest)
-  // .post() -> not used. users cannot create new events, only find ones already @ meetup
+  .get(function(req,res){
+    request.get({
+      url: 'https://api.meetup.com/find/groups',
+      qs: {
+        key: process.env.apiKey,
+        sign: true,
+        zip: req.query.zip,
+        category: '4',
+        page: '10'
+      },
+      json: true
+    }, function(err,response,body){
+      res.json(body)
+    });
+  })
 
 //:3000/events/:eID
 eventRoutes.route('/:eID')
@@ -38,3 +59,5 @@ eventRoutes.route('/:eID')
 eventRoutes.route('/:eID/users')
   //list of who's going to this event
   .get(/* db.listUsersAttendingSpecificEvent */ basicTest1)
+
+module.exports = eventRoutes;

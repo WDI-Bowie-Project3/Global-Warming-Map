@@ -6,8 +6,14 @@ const Router = ReactRouter.Router;
 const browserHistory = ReactRouter.browserHistory;
 const Route = ReactRouter.Route;
 const Link = ReactRouter.Link;
-const auth = require('./auth_helpers');
+const auth = require('./authComponents/auth_helpers');
 const $ = require('jquery');
+const Nav = require('./nav.js')
+const Login = require('./authComponents/login.js');
+const Logout = require('./authComponents/logout.js');
+const SignUp = require('./authComponents/signup.js');
+const EventSearchBar = require('./eventComponents/eventSearchBar.js');
+const EventPage = require('./eventComponents/eventPage.js')
 
 const App = React.createClass({
   getInitialState: function() {
@@ -27,24 +33,21 @@ const App = React.createClass({
     auth.login()
   },
 
+  // <li><Link to="/dashboard">Dashboard</Link> (authenticated)</li>
+  // not sure how we want use this
+
   render: function() {
     return (
       <div>
-        <ul>
-          <li>
-            {this.state.loggedIn ? (
-              <Link to="/logout">Log out</Link>
-            ) : (
-              <Link to="/login">Sign in</Link>
-            )}
-          </li>
-          <li><Link to="/dashboard">Dashboard</Link> (authenticated)</li>
-        </ul>
+        <Nav loggedIn={this.state.loggedIn} />
+        <nav className="aside-1">
         {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
+        </nav>
       </div>
     )
   }
 })
+
 
 const Dashboard = React.createClass({
   getInitialState: function() {
@@ -81,62 +84,6 @@ const Dashboard = React.createClass({
   }
 })
 
-const Login = React.createClass({
-
-  contextTypes: {
-    router: React.PropTypes.object.isRequired
-  },
-
-  getInitialState: function() {
-    return {
-      error: false
-    }
-  },
-
-  handleSubmit: function(event) {
-    event.preventDefault()
-
-    const email = this.refs.email.value
-    const pass = this.refs.pass.value
-
-    auth.login(email, pass, (loggedIn) => {
-      if (!loggedIn)
-        return this.setState({ error: true })
-
-      const { location } = this.props
-
-      if (location.state && location.state.nextPathname) {
-        this.context.router.replace(location.state.nextPathname)
-      } else {
-        this.context.router.replace('/')
-      }
-    })
-  },
-
-  render: function() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label><input ref="email" placeholder="email" defaultValue="test2" /></label>
-        <label><input ref="pass" placeholder="password" /></label> (hint: password1)<br />
-        <button type="submit">login</button>
-        {this.state.error && (
-          <p>Bad login information</p>
-        )}
-      </form>
-    )
-  }
-})
-
-
-const Logout = React.createClass({
-  componentDidMount: function() {
-    auth.logout()
-  },
-
-  render: function() {
-    return <p>You are now logged out</p>
-  }
-})
 
 function requireAuth(nextState, replace) {
   if (!auth.loggedIn()) {
@@ -147,12 +94,24 @@ function requireAuth(nextState, replace) {
   }
 }
 
+
+const ErrorPage = React.createClass({
+  render: function() {
+    return(
+      <h1>404: Not Found</h1>
+    )
+  }
+})
+
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={App}>
       <Route path="login" component={Login} />
       <Route path="logout" component={Logout} />
+      <Route path="new" component={SignUp} />
       <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
     </Route>
+    <Route path="/meetups" component={EventPage} />
+    <Route path="*" component={ErrorPage} />
   </Router>
 ), document.querySelector('#container'))

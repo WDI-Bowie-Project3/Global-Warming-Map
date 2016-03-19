@@ -44,3 +44,9 @@ scratch.js
 
 # bundle
 bundle.js
+
+# scratchhtml
+scratch.html
+
+# d3 test render
+test_render
