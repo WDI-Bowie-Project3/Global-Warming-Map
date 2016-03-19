@@ -1,11 +1,6 @@
 'use strict'
 const React = require('react');
-
-//do we want button/input components, or just stick wtih html construction for these?
-// const Button = require('./../basics/button');
-// const Input = require('./../basics/input');
-
-
+const eventHelp = require('./event_helpers');
 const EventSearchBar = React.createClass({
   //contextTypes : {}
   //see login.js for more info if it ends up being required.
@@ -15,28 +10,28 @@ const EventSearchBar = React.createClass({
   handleSubmit : function (event) {
     event.preventDefault();
 
-    const searchTerm = this.refs.search.value;
+    let searchTerm = this.refs.search.value;
 
-    this.props.findMeetUps(searchTerm)
+    eventHelp.findMeetUps(searchTerm)
     //do thing with search term entered
     this.refs.searchForm.reset()
   },
 
   render : function(){
-
-
     return (
       <div className="searchContainer">
-        <form ref="searchForm" onSubmit={this.handleSubmit}>
+        <form ref="searchForm" results={[]} onSubmit={this.handleSubmit}>
           <label>
             <input ref="search" placeholder="Zipcode"></input>
             <button type="submit">Search</button>
           </label>
         </form>
       </div>
-    )
-  }
-
+  },
+  //may need to do something like ...
+  //let this.props.results = eventHelp.eventSearch(searchTerm);
+  //instead?
+  //eventHelp.eventSearch(searchTerm);
 })
 
 module.exports = EventSearchBar;
