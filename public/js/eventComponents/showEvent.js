@@ -12,7 +12,7 @@ const ShowEvent = React.createClass({
 //not working
     return (
       <div>
-        {this.props.details}
+        {this.props.details.name}
       </div>
     )
   }

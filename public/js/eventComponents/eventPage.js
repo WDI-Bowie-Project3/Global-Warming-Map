@@ -7,11 +7,13 @@ const Nav = require('../nav.js');
 const $ = require('jquery');
 const EventSearchResults = require('./eventSearchResults.js')
 const ShowEvents = require('./showEvent.js')
+const _ = require('underscore')
+
 
 const EventView = React.createClass({
   getInitialState: function(){
       return {
-        searchResults: {}
+        searchResults: []
       }
   },
 
@@ -21,6 +23,7 @@ const EventView = React.createClass({
     $.get('/events', searchZip)
     .done(function(data){
       that.state.searchResults = data;
+      console.log('This is the data elton wants to see', data);
       that.setState({searchResults: that.state.searchResults})
       // sets state to array of objects
       // objects are groups in relation to zipcode entered
@@ -30,14 +33,17 @@ const EventView = React.createClass({
     })
   },
 
-  // not working
-  // showEvents: function(key){
-  //   return (
-  //     <ShowEvents key={key} index={key} details={this.state.searchResults} />
-  //   )
-  // },
 
   render: function(){
+    // showEvents={this.showEvents}
+    // <EventSearchResults searchResults={this.state.searchResults} />
+    let newArray = [];
+    this.state.searchResults.forEach((el)=>{
+      newArray.push(el)
+      console.log(newArray)
+    })
+      // <div>{Object.keys(this.state.searchResults).map(this.showEvents)}</div>
+
     return (
       <div>
         <nav className="navbar">
@@ -45,7 +51,15 @@ const EventView = React.createClass({
           <nav className="nav-header">Climate Change Map</nav>
         </nav>
         <EventSearchBar findMeetUps={this.findMeetUps} />
-        <EventSearchResults searchResults={this.state.searchResults} /*showEvents={this.showEvents}*/ />
+        {newArray.map((obj)=>{
+          return (
+            <div>
+          <li>{obj.name}</li>
+          <li>{obj.members}</li>
+          <img className="group-pics" src={obj.group_photo.highres_link}/>
+            </div>
+        )
+        })}
       </div>
     )
   }

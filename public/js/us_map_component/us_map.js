@@ -5,9 +5,9 @@ const $ = require('jquery');
 const _ = require('underscore');
 var d3 = require('d3');
 var topojson = require('topojson')
-const states = require('./test.js');
+const mystates = require('./temperatures.json');
 
-console.log(states)
+console.log(mystates)
 
 const MapView = React.createClass({
 
@@ -15,8 +15,8 @@ const MapView = React.createClass({
     // AllTemperatures data for 100 years
     var AllTemparatures = [];
     d3.json('./temperatures.json', function(error, states) {
+      var states = mystates;
       console.log('states', states)
-
         $.each(states[0], function(key, data){
           var anomaly = [] // this is a temporary array to keep anomaly for each year
           _.each( data, function(d){

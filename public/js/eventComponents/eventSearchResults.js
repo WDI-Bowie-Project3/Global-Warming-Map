@@ -12,7 +12,6 @@ const EventSearchResults = React.createClass({
     // for(let i=0; i<listLength; i++){
     //   display.push(list[i]);
     // }
-    console.log(this.props.results, 'this.props.results before render in EventSearchResults');
     //each el below is hopefully
     // return (
     //   <ul>
@@ -25,14 +24,14 @@ const EventSearchResults = React.createClass({
     // {display.map( (el) => {
     //   return <li><ShowEvent meetUpEvent={el} key={new Date()} /></li>
     // })}
-    // line 32 logs each groupevent as an object
-    // line 33 does not show up on the page??
+  let thething = _.map(this.props.details, function(val, key){
+    //console.log(val.name);
+    return val.name
+  })
+  console.log(thething);
     return (
       <ul>
-        {_.map(this.props.searchResults).forEach((obj)=>{
-          console.log(obj);
-          return <li>{obj.name}</li>
-        })}
+      <li>{thething}</li>
       </ul>
     )
   }
