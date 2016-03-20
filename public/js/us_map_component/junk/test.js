@@ -43,15 +43,15 @@ _.map(states, (data)=>{
 // $.each(states[0], function(key, data){
 
 var colors = d3.scale.linear()
-  .domain([ (-1.0), 4 ])   //check the largers number and set it as mex.
+  .domain([ 0,1 ])   //check the largers number and set it as mex.
   .range(['#80dfff', '#b30000']);
 
 // var arr = [-3,-4,-6,1,5,7,8]
   // console.log(Object.keys(states[0]).length)
 $.each(states[0], function(key, data){
   // console.log(key, 'key');
-  console.log('key', key , 'data', data[201412].anomaly ) // each state[key] with all their years
-  var state = d3.selectAll(`#${key}`).data(data[201412].anomaly)  //We should pass an array here
+  console.log('key', key , 'data', data[199912].anomaly ) // each state[key] with all their years
+  var state = d3.selectAll(`#${key}`).data(data[199912].anomaly)  //We should pass an array here
   // var state = d3.selectAll(`svg.childNodes`).data(data[201412].anomaly)  //We should pass an array here
           //change selectAll above to reference #id. IDs are caps.
           // data[0]
