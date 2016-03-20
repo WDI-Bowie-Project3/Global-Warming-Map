@@ -2,7 +2,7 @@
 const React = require('react');
 const eventHelp = require('./event_helpers');
 const ShowEvent = require('./showEvent'); //this may move to "basics" folder???
-
+const _ = require('underscore')
 const EventSearchResults = React.createClass({
 
   render : function() {
@@ -22,11 +22,12 @@ const EventSearchResults = React.createClass({
     //   </ul>
     //
     // ) try this when you actually have props
+    // {display.map( (el) => {
+    //   return <li><ShowEvent meetUpEvent={el} key={new Date()} /></li>
+    // })}
     return (
       <ul>
-        {display.map( (el) => {
-          return <li><ShowEvent meetUpEvent={el} key={new Date()} /></li>
-        })}
+        {console.log(this.props.searchResults)}
       </ul>
 
     )

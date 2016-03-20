@@ -14,6 +14,8 @@ const Logout = require('./authComponents/logout.js');
 const SignUp = require('./authComponents/signup.js');
 const EventSearchBar = require('./eventComponents/eventSearchBar.js');
 const EventPage = require('./eventComponents/eventPage.js')
+const MapView = require('./us_map_component/us_map.js')
+
 
 const App = React.createClass({
   getInitialState: function() {
@@ -42,6 +44,7 @@ const App = React.createClass({
         <Nav loggedIn={this.state.loggedIn} />
         <nav className="aside-1">
         {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
+        <MapView />
         </nav>
       </div>
     )
@@ -111,7 +114,7 @@ ReactDOM.render((
       <Route path="new" component={SignUp} />
       <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
     </Route>
-    <Route path="/meetups" component={EventPage} />
+    <Route path="/events" component={EventPage} />
     <Route path="*" component={ErrorPage} />
   </Router>
 ), document.querySelector('#container'))

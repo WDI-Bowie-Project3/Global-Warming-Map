@@ -9,9 +9,11 @@ const ShowEvent = React.createClass({
 
   render : function () {
     console.log(this.props.meetUpEvent, 'this.props.meetUpEvent');
-
+//not working
     return (
-      <p>PLACEHOLDER UNTIL WE HAVE MEETUP API UNDERSTOOD</p>
+      <div>
+        {this.props.details}
+      </div>
     )
   }
 

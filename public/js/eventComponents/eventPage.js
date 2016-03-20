@@ -6,6 +6,7 @@ const EventSearchBar = require('./EventSearchBar.js');
 const Nav = require('../nav.js');
 const $ = require('jquery');
 const EventSearchResults = require('./eventSearchResults.js')
+const ShowEvents = require('./showEvent.js')
 
 const EventView = React.createClass({
   getInitialState: function(){
@@ -29,6 +30,13 @@ const EventView = React.createClass({
     })
   },
 
+  // not working
+  // showEvents: function(key){
+  //   return (
+  //     <ShowEvents key={key} index={key} details={this.state.searchResults} />
+  //   )
+  // },
+
   render: function(){
     return (
       <div>
@@ -36,7 +44,8 @@ const EventView = React.createClass({
           <nav className="map-nav"><Link to="/">Map</Link></nav>
           <nav className="nav-header">Climate Change Map</nav>
         </nav>
-        <EventSearchBar findMeetUps={this.findMeetUps} showGroups={this.displayMeetUpGroups}/>
+        <EventSearchBar findMeetUps={this.findMeetUps} />
+        <EventSearchResults searchResults={this.state.searchResults} /*showEvents={this.showEvents}*/ />
       </div>
     )
   }
