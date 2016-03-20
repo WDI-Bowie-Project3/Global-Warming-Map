@@ -2,7 +2,7 @@
 const React = require('react');
 const eventHelp = require('./event_helpers');
 const ShowEvent = require('./showEvent'); //this may move to "basics" folder???
-
+const _ = require('underscore')
 const EventSearchResults = React.createClass({
 
   render : function() {
@@ -27,9 +27,7 @@ const EventSearchResults = React.createClass({
     // })}
     return (
       <ul>
-        {Object.keys(this.props.searchResults).map(function(key){
-          console.log(key.name)
-        })}
+        {console.log(this.props.searchResults)}
       </ul>
 
     )
