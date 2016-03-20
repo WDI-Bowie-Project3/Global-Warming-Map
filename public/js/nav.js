@@ -6,7 +6,7 @@ const auth = require('./authComponents/auth_helpers');
 const Login = require('./authComponents/login.js');
 const Logout = require('./authComponents/logout.js');
 const SignUp = require('./authComponents/signup.js');
-const GoToEventPage = require('./eventComponents/GoToEventPage.js');
+const GoToEventPage = require('./eventComponents/goToEventPage.js');
 
 const Nav = React.createClass({
   render: function(){
