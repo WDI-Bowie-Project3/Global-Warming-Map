@@ -4,18 +4,19 @@ const ReactRouter = require('react-router');
 const $ = require('jquery');
 const _ = require('underscore');
 var d3 = require('d3');
-var topojson = require('topojson')
+var topojson = require('topojson');
 const states = require('./temperatures.json');
 
-console.log(states)
+console.log(states, 'states in us_map.js');
 
 const MapView = React.createClass({
 
   dddMap : function() {
     // AllTemperatures data for 100 years
     var AllTemparatures = [];
+    console.log(states, 'states outside function');
     d3.json('./temperatures.json', function(error, states) {
-      console.log('states', states)
+      console.log('states inside function', states)
 
         $.each(states[0], function(key, data){
           var anomaly = [] // this is a temporary array to keep anomaly for each year
@@ -128,14 +129,16 @@ const MapView = React.createClass({
           .style("stroke-width", 1.5 / k + "px");
     }
   },
+
   drawthemap:  function(){
     this.dddMap()
   },
   render: function(){
     console.log('connected to us_map.js')
     return (
-      <div id ="map" onLoad={this.drawthemap()}>
-      </div>
+      // <div id ="map" onLoad={this.drawthemap()}>
+      // </div>
+      <div>placeholder for map</div>
     )
   }
 })

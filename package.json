@@ -38,9 +38,9 @@
     "react-dom": "^0.14.7",
     "react-router": "^2.0.1",
     "request": "^2.69.0",
+    "topojson": "^1.6.24",
     "uglifyify": "^3.0.1",
     "underscore": "^1.8.3",
-    "topojson": "^1.6.24",
     "watchify": "^3.7.0"
   }
 }
