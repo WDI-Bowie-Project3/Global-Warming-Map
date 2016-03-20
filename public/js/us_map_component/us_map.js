@@ -5,7 +5,7 @@ const $ = require('jquery');
 const _ = require('underscore');
 var d3 = require('d3');
 var topojson = require('topojson')
-const states = require('./temperatures.json');
+const states = require('./test.js');
 
 console.log(states)
 
@@ -134,7 +134,7 @@ const MapView = React.createClass({
   render: function(){
     console.log('connected to us_map.js')
     return (
-      <div id ="map" onLoad={this.drawthemap()}>
+      <div id ="map" onLoad={this.drawthemap}>
       </div>
     )
   }

@@ -25,11 +25,15 @@ const EventSearchResults = React.createClass({
     // {display.map( (el) => {
     //   return <li><ShowEvent meetUpEvent={el} key={new Date()} /></li>
     // })}
+    // line 32 logs each groupevent as an object
+    // line 33 does not show up on the page??
     return (
       <ul>
-        {console.log(this.props.searchResults)}
+        {_.map(this.props.searchResults).forEach((obj)=>{
+          console.log(obj);
+          return <li>{obj.name}</li>
+        })}
       </ul>
-
     )
   }
 })
