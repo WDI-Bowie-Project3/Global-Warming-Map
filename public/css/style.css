@@ -80,3 +80,14 @@ a {
     max-height: 295px;
     max-width: 295px;
   }
+
+
+body {
+  background-color: black;
+}
+
+#map{
+  position: relative;
+  margin:auto;
+  text-align: center;
+}

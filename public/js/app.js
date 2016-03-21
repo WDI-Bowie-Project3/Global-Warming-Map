@@ -44,8 +44,8 @@ const App = React.createClass({
         <Nav loggedIn={this.state.loggedIn} />
         <nav className="aside-1">
         {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
-        <MapView />
         </nav>
+        <MapView />
       </div>
     )
   }

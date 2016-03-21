@@ -74,12 +74,12 @@ const MapView = React.createClass({
           .attr("d", path)  // path generator translates geo data to SVG
           .on("click", clicked)
           .transition()
-          .duration(2250)
+          .duration(750)
           .attr("fill", function(d,i) {
             statesGeoArray.push(dataStates.objects.states.geometries[i].id);
 
             colors = d3.scale.linear()  //scale refers to pixels. other option is .orginal scale.
-              .domain([ d3.min(temperatureArr.slice(0,51)),0,d3.max(temperatureArr.slice(0,49))])  //Data difference, check the largers number and set it as mex.
+              .domain([ d3.min(temperatureArr.slice(0,51)),0,d3.max(temperatureArr.slice(0,51))])  //Data difference, check the largers number and set it as mex.
               .range(['blue','yellow','#b30000'])  // We can use .range or rangePoints.
               return colors(temperatureArr.slice(0,51)[drawnOrderStatesNumberArray[i]]);
               // return "hsl(100,"+colors(firstTemparatures.slice(0,49)[drawnOrderStatesNumberArray[i]]) + "%,59%)";
@@ -92,25 +92,41 @@ const MapView = React.createClass({
     // });
     }
 
-    console.log(states)
+    // console.log(states)   *************
     // AllTemperatures data for 100 years
     var AllTemparatures = [];
     // d3.json('./temperatures.json', function(error, states) {
     // var states = this.state.states;
+
+    for (var i = 0; i < Object.keys(states[0]['NY']).length; i++) {
+      AllTemparatures.push([]);
+    }
+
+      console.log(AllTemparatures);
     $.each(states[0], function(key, data){
-      var anomaly = [] // this is a temporary array to keep anomaly for each year
-      _.each( data, function(d){
-        // console.log('d', d.anomaly)
-        anomaly.push(d.anomaly)
-      })  // var state = d3.selectAll('path').data(data[198612].anomaly)  //We should pass an array here
-      AllTemparatures.push(anomaly)
+      var i = 0;
+      _.each(data, function(d, key) {
+        // console.log(d);
+        AllTemparatures[i].push(d.anomaly);
+        i++;
+      });
+      // console.log(AllTemparatures);
+
+
+
+      // var anomaly = [] // this is a temporary array to keep anomaly for each year
+      // _.each( data, function(d){
+      //   // console.log('d', d.anomaly)
+      //   anomaly.push(d.anomaly)
+      // })  // var state = d3.selectAll('path').data(data[198612].anomaly)  //We should pass an array here
+      // AllTemparatures.push(anomaly)
     })
-    console.log(AllTemparatures.length, 'length or our new array' , AllTemparatures)
+    // console.log(AllTemparatures.length, 'length or our new array' , AllTemparatures)
     // })
     //drawing the map with 2 sc timing
 
-      drawTheMap(AllTemparatures[year])
 
+    drawTheMap(AllTemparatures[year])
 
 
     // zooming effect when click
@@ -147,11 +163,15 @@ const MapView = React.createClass({
   // },
 
   componentDidMount: function(){
-    console.log('this is the states inside componentDidMount' ,this.state.states)
-     for(var year = 0; year<51; year++) {
-      this.setState({currentyear: year})
-      this.dddMap(this.state.states, year)
+  var counter = 0
+    // console.log('this is the states inside componentDidMount' ,this.state.states)
+  var test1 = function() {
+    counter ++
+      this.setState({currentyear: counter})
+      $('#map').empty();
+      this.dddMap(this.state.states, this.state.currentyear)
     }
+    setInterval(test1.bind(this),3000);
   },
   // drawthemap:  function(){
   //   this.dddMap()
