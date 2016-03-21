@@ -38,7 +38,7 @@ const Login = React.createClass({
     return (
       <nav className="aside-1">
         <form onSubmit={this.handleSubmit}>
-          <label><input ref="email" placeholder="email" defaultValue="bryce2" /></label>
+          <label><input ref="email" placeholder="email" defaultValue="guest@example.com" /></label>
           <label><input ref="pass" placeholder="password" /></label>
           <button type="submit">login</button>
           {this.state.error && (

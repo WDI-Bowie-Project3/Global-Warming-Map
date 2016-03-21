@@ -31,12 +31,11 @@ function createUser(req, res, next) {
     db.none("INSERT INTO users (email, password_digest, name, zipcode) VALUES($1, $2, $3, $4);", [email, hash, req.body.name, req.body.zipcode])
     .then(function (data) {
       // success;
-      console.log(data);
       next();
     })
     .catch(function () {
       // error;
-      console.log('error signing up');
+      console.error('error signing up');
     });
   }
 }
@@ -47,7 +46,6 @@ function loginUser(req, res, next) {
 
   db.one("SELECT * FROM users WHERE email LIKE $1;", [email])
     .then((data) => {
-      console.log(data)
       if (bcrypt.compareSync(password, data.password_digest)) {
         res.rows = data
         next()
@@ -67,7 +65,6 @@ function editUser(req,res,next) {
   db.one("UPDATE users SET name = $1, email = $2, password = $3, zipcode = $4 where user_id = $5)",
   [ req.body.name, req.body.email, req.body.password, req.body.zipcode, req.params.uID])
   .then(function(data) {
-    console.log('user updated', data)
     next();
   })
   .catch(function(error){

@@ -1,17 +1,57 @@
 .navbar {
   font-size: 20px;
   display: flex;
-  justify-content: flex-end;;
+  justify-content: space-between;;
   flex-wrap: nowrap;
   flex-direction: row;
   background-color: black;
   color: white;
   padding: 15px;
 }
+
+h1 {
+  color: white;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px;
+  color: black;
+}
+
+.add-button {
+  display: block;
+  font-size: 15px;
+  border: 2px solid black;
+  background-color: white;
+}
+
+.inner-container {
+  margin: 10px;
+  padding: 10px;
+  height: 355px;
+  width: 355px;
+  border: 2px solid black;
+  background-color: white;
+  text-align: center;
+}
+
+.header {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+
+
 a {
   text-decoration: none;
   color: white;
   font-size: 20px;
+  margin-right: 2px;
+  margin-left: 2px;
 }
 
 .aside-1 {
@@ -44,3 +84,20 @@ a {
   stroke-linecap: round;
   pointer-events: none;
   }
+
+  .group-pics{
+    max-height: 295px;
+    max-width: 295px;
+  }
+
+
+body {
+  background-color: black;
+  text-align: center;
+}
+
+#map{
+  position: relative;
+  margin:auto;
+  text-align: center;
+}

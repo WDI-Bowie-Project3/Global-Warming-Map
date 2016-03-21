@@ -3,7 +3,6 @@ console.log('connected')
 
 // AllTemperatures data for 100 years
 var AllTemparatures = [];
-// var temperatureforStates = function () {
 $.each(states[0], function(key, data){
   var anomaly = [] // this is a temporary array to keep anomaly for each year
   _.each( data, function(d){
@@ -12,7 +11,6 @@ $.each(states[0], function(key, data){
   })  // var state = d3.selectAll('path').data(data[198612].anomaly)  //We should pass an array here
   AllTemparatures.push(anomaly)
 })
-console.log(AllTemparatures) // each state[key] with all their years
 
 // code reference: https://github.com/cyrus-shahrivar/refugeeDataViz/blob/master/public/app.js  for order of the states
 ////////////////////////////////////////////////// VARIABLES //////////////////////////////////////////////////

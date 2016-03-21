@@ -3,30 +3,22 @@ const React = require('react');
 const ReactRouter = require('react-router');
 const $ = require('jquery');
 const _ = require('underscore');
-var d3 = require('d3');
-var topojson = require('topojson');
-const states = require('./temperatures.json');
-
-console.log(states, 'states in us_map.js');
+const d3 = require('d3');
+const topojson = require('topojson')
+const mystates = require('./test.js');
+const dataStates = require('./us-10m.json')
 
 const MapView = React.createClass({
+  getInitialState: function(){
+    return {
+      states: mystates,
+      currentyear: 0,
+      displayyear: 1895
+    }
+  },
 
-  dddMap : function() {
-    // AllTemperatures data for 100 years
-    var AllTemparatures = [];
-    console.log(states, 'states outside function');
-    d3.json('./temperatures.json', function(error, states) {
-      console.log('states inside function', states)
-
-        $.each(states[0], function(key, data){
-          var anomaly = [] // this is a temporary array to keep anomaly for each year
-          _.each( data, function(d){
-            // console.log('d', d.anomaly)
-            anomaly.push(d.anomaly)
-          })  // var state = d3.selectAll('path').data(data[198612].anomaly)  //We should pass an array here
-          AllTemparatures.push(anomaly)
-        })
-      })
+  dddMap : function(passObject, year) {
+    var states = passObject
 
     // code reference: https://github.com/cyrus-shahrivar/refugeeDataViz/blob/master/public/app.js  for order of the states
     ////////////////////////////////////////////////// VARIABLES //////////////////////////////////////////////////
@@ -71,38 +63,46 @@ const MapView = React.createClass({
     var colors;
     // draw the map
     function drawTheMap(temperatureArr) {
-    d3.json("/us-10m.json", function(error, us) {  // loads JSON map file
-      if (error) throw error;
       g.append("g")
           .attr("id", "states")
-        .selectAll("path") // selects path elements, will make them if they don't exist
-          .data(topojson.feature(us, us.objects.states).features)    // iterates over geo feature
-        .enter().append("path")  // adds feature if it doesn't exist as an element  / // defines element as a path
+          .selectAll("path") // selects path elements, will make them if they don't exist
+            .data(topojson.feature(dataStates, dataStates.objects.states).features)    // iterates over geo feature
+            .enter().append("path")  // adds feature if it doesn't exist as an element  / // defines element as a path
           .attr("d", path)  // path generator translates geo data to SVG
           .on("click", clicked)
+          .transition()
+          .duration(400)
           .attr("fill", function(d,i) {
-            statesGeoArray.push(us.objects.states.geometries[i].id);
+            statesGeoArray.push(dataStates.objects.states.geometries[i].id);
 
             colors = d3.scale.linear()  //scale refers to pixels. other option is .orginal scale.
-              .domain([ d3.min(temperatureArr.slice(0,51)),0,d3.max(temperatureArr.slice(0,49))])  //Data difference, check the largers number and set it as mex.
-              .range(['blue','yellow','#b30000'])  // We can use .range or rangePoints.
-              return colors(temperatureArr.slice(0,51)[drawnOrderStatesNumberArray[i]]);
-              // return "hsl(100,"+colors(firstTemparatures.slice(0,49)[drawnOrderStatesNumberArray[i]]) + "%,59%)";
-          });
+              .domain([ d3.min(temperatureArr.slice(0,122)),d3.max(temperatureArr.slice(0,122))])  //Data difference, check the largers number and set it as mex.
+              .range(['#BDEEFF','#b30000'])  // We can use .range or rangePoints.
+              return colors(temperatureArr.slice(0,122)[drawnOrderStatesNumberArray[i]]);
+            });
 
       g.append("path")
-          .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+          .datum(topojson.mesh(dataStates, dataStates.objects.states, function(a, b) { return a !== b; }))
           .attr("id", "state-borders")
           .attr("d", path);
-    });
     }
-    console.log(AllTemparatures.length, 'length or our new array')
+    // AllTemperatures data for 100 years
+    var AllTemparatures = [];
+    for (var i = 0; i < Object.keys(states[0]['NY']).length; i++) {
+      AllTemparatures.push([]);
+    }
 
-    //drawing the map with 2 sc timing
-    for (var i = 0 ; i < 51; i++) {
-    var interval = setInterval(drawTheMap(AllTemparatures[i])
-    , 20000);
-    }
+    $.each(states[0], function(key, data){
+      var i = 0;
+      _.each(data, function(d, key) {
+        // console.log(d);
+        AllTemparatures[i].push(d.anomaly);
+        i++;
+      });
+    })
+
+    drawTheMap(AllTemparatures[year])
+
     // zooming effect when click
     function clicked(d) {
       var x, y, k;
@@ -129,16 +129,32 @@ const MapView = React.createClass({
           .style("stroke-width", 1.5 / k + "px");
     }
   },
-
-  drawthemap:  function(){
-    this.dddMap()
+  componentDidMount: function(){
+  var counter = 0
+  var yearChange = function() {
+    counter ++
+    if (counter === 120){
+      counter = 0
+      this.setState({displayyear: 1895})
+    } else {
+      this.setState({
+        currentyear: counter,
+        displayyear: this.state.displayyear + 1
+      })
+      $('#map').empty();
+      this.dddMap(this.state.states, this.state.currentyear)
+    }
+  }
+    setInterval(yearChange.bind(this),1000);
   },
+
   render: function(){
-    console.log('connected to us_map.js')
     return (
-      // <div id ="map" onLoad={this.drawthemap()}>
-      // </div>
-      <div>placeholder for map</div>
+      <div>
+        <h1>Year: {this.state.displayyear}</h1>
+        <div id ="map">
+        </div>
+      </div>
     )
   }
 })

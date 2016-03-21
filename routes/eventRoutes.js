@@ -24,7 +24,6 @@ function makeRequest(req,res,next) {
   };
   request(conn, (err,res,body)=>{
     res.events = body;
-    console.log(res.events.results[0]);
     next()
   })
 }
@@ -51,10 +50,6 @@ eventRoutes.route('/')
 eventRoutes.route('/:eID')
   //see basic info about a single event
   .get(/* db.getSingleEventInfo */ basicTest)
-
-  // .put() -> not used. event info comes from API, users will not be able to alter event-specific information.
-  // .delete() -> not used. users can remove an event from their list, but not an event from meetup API
-
 //:3000/events/:eID/users
 eventRoutes.route('/:eID/users')
   //list of who's going to this event

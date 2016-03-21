@@ -14,7 +14,6 @@ const SignUp = React.createClass({
       }
 
       signUpRequest(signupInfo);
-      console.log(signupInfo)
       this.refs.createUserForm.reset();
   },
 
@@ -40,10 +39,9 @@ function signUpRequest(signupInfo) {
 
  $.post('/users', d)
    .done((data) => {
-     console.log("signup post : ", data);
    })
    .error((error) => {
-     console.log(error);
+     console.error(error);
    })
 }
 
