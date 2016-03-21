@@ -71,13 +71,13 @@ const MapView = React.createClass({
           .attr("d", path)  // path generator translates geo data to SVG
           .on("click", clicked)
           .transition()
-          .duration(400)
+          .duration(25)
           .attr("fill", function(d,i) {
             statesGeoArray.push(dataStates.objects.states.geometries[i].id);
 
             colors = d3.scale.linear()  //scale refers to pixels. other option is .orginal scale.
               .domain([ d3.min(temperatureArr.slice(0,122)),d3.max(temperatureArr.slice(0,122))])  //Data difference, check the largers number and set it as mex.
-              .range(['#BDEEFF','#b30000'])  // We can use .range or rangePoints.
+              .range(['#3385ff','#ff3333'])  // We can use .range or rangePoints.
               return colors(temperatureArr.slice(0,122)[drawnOrderStatesNumberArray[i]]);
             });
 
@@ -133,7 +133,7 @@ const MapView = React.createClass({
   var counter = 0
   var yearChange = function() {
     counter ++
-    if (counter === 120){
+    if (counter === 121){
       counter = 0
       this.setState({displayyear: 1895})
     } else {
@@ -145,15 +145,22 @@ const MapView = React.createClass({
       this.dddMap(this.state.states, this.state.currentyear)
     }
   }
-    setInterval(yearChange.bind(this),1000);
+    setInterval(yearChange.bind(this),175);
   },
 
   render: function(){
     return (
       <div>
+        <div className="info-paragraph">
+        <p>This is a visual representation of climate change. The colors represent the change in average temperature for that year compared to the long term average according to the NOAA. If you would like to make a difference, check out our events page to find environmental meet up groups in your area.</p>
+        </div>
         <h1>Year: {this.state.displayyear}</h1>
         <div id ="map">
         </div>
+        <span className="disclaimer">
+          <br></br>
+          Note: Alaska data prior to 1925 is placeholder to allow proper rending of other states. Hawaii and D.C. info was not part of our dataset, so placeholder data was used for each for the entire period.
+        </span>
       </div>
     )
   }
