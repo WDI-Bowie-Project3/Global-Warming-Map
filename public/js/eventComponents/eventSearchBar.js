@@ -25,6 +25,7 @@ const EventSearchBar = React.createClass({
   render : function(){
     return (
       <div className="searchContainer">
+        <div className="header">Find Meet Up Groups</div>
         <form ref="searchForm" results={[]} onSubmit={this.handleSubmit}>
           <label>
             <input ref="search" placeholder="Zipcode"></input>

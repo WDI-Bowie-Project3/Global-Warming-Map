@@ -5,7 +5,7 @@ const Link = ReactRouter.Link;
 const EventSearchBar = require('./EventSearchBar.js');
 const Nav = require('../nav.js');
 const $ = require('jquery');
-const EventSearchResults = require('./eventSearchResults.js')
+// const EventSearchResults = require('./eventSearchResults.js')
 const ShowEvents = require('./showEvent.js')
 const _ = require('underscore')
 
@@ -23,7 +23,7 @@ const EventView = React.createClass({
     $.get('/events', searchZip)
     .done(function(data){
       that.state.searchResults = data;
-      console.log('This is the data elton wants to see', data);
+      console.log(data);
       that.setState({searchResults: that.state.searchResults})
       // sets state to array of objects
       // objects are groups in relation to zipcode entered
@@ -33,6 +33,11 @@ const EventView = React.createClass({
     })
   },
 
+  addGroup: function(e) {
+    e.preventDefault();
+
+    console.log("add to group button clicked")
+  },
 
   render: function(){
     // showEvents={this.showEvents}
@@ -51,15 +56,18 @@ const EventView = React.createClass({
           <nav className="nav-header">Climate Change Map</nav>
         </nav>
         <EventSearchBar findMeetUps={this.findMeetUps} />
+        <div className="container">
         {newArray.map((obj)=>{
           return (
-            <div>
-          <li>{obj.name}</li>
-          <li>{obj.members}</li>
-          <img className="group-pics" src={obj.group_photo.highres_link}/>
+            <div className="inner-container">
+              <div className="header">{obj.name}</div>
+              <div>Members: {obj.members}</div>
+              {obj.group_photo ? <img className="group-pics" src={obj.group_photo.highres_link}/> : <div>No Photo Available</div>}
+              <div><button className="add-buton" ref="addButton" onClick={this.addGroup} type="submit">Add</button></div>
             </div>
         )
         })}
+        </div>
       </div>
     )
   }

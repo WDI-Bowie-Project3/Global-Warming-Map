@@ -5,7 +5,7 @@ const $ = require('jquery');
 const _ = require('underscore');
 var d3 = require('d3');
 var topojson = require('topojson')
-const mystates = require('./temperatures.json');
+const mystates = require('./test.js');
 
 console.log(mystates)
 
@@ -128,6 +128,9 @@ const MapView = React.createClass({
           .style("stroke-width", 1.5 / k + "px");
     }
   },
+  // componentDidMount: function(){
+  //   this.drawthemap()
+  // },
   drawthemap:  function(){
     this.dddMap()
   },
