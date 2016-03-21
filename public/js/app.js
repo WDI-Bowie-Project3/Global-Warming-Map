@@ -35,9 +35,6 @@ const App = React.createClass({
     auth.login()
   },
 
-  // <li><Link to="/dashboard">Dashboard</Link> (authenticated)</li>
-  // not sure how we want use this
-
   render: function() {
     return (
       <div>
@@ -68,8 +65,6 @@ const Dashboard = React.createClass({
         xhr.setRequestHeader("Authorization", auth.getToken());
       }
     }).complete((data) => {
-      console.log(data);
-      // this.setState({ user: data.agent.email });
     })
   },
 

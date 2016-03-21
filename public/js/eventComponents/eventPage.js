@@ -5,8 +5,6 @@ const Link = ReactRouter.Link;
 const EventSearchBar = require('./EventSearchBar.js');
 const Nav = require('../nav.js');
 const $ = require('jquery');
-// const EventSearchResults = require('./eventSearchResults.js')
-// const ShowEvents = require('./showEvent.js')
 const _ = require('underscore')
 
 
@@ -23,31 +21,25 @@ const EventView = React.createClass({
     $.get('/events', searchZip)
     .done(function(data){
       that.state.searchResults = data;
-      console.log(data);
       that.setState({searchResults: that.state.searchResults})
       // sets state to array of objects
       // objects are groups in relation to zipcode entered
     })
     .error( (error) => {
-      console.log(error);
+      console.error(error);
     })
   },
 
   addGroup: function(e) {
     e.preventDefault();
 
-    console.log("add to group button clicked")
   },
 
   render: function(){
-    // showEvents={this.showEvents}
-    // <EventSearchResults searchResults={this.state.searchResults} />
     let newArray = [];
     this.state.searchResults.forEach((el)=>{
       newArray.push(el)
-      console.log(newArray)
     })
-      // <div>{Object.keys(this.state.searchResults).map(this.showEvents)}</div>
 
     return (
       <div>
