@@ -51,9 +51,9 @@ const EventView = React.createClass({
         {newArray.map((obj)=>{
           return (
             <div className="inner-container">
-              <div className="header">{obj.name}</div>
+              <div className="header"><a id="linktag" href={obj.link}>{obj.name}</a></div>
               <div>Members: {obj.members}</div>
-              {obj.group_photo ? <img className="group-pics" src={obj.group_photo.highres_link}/> : <div>No Photo Available</div>}
+              {obj.group_photo ? <img className="group-pics" src={obj.group_photo.highres_link}/> : <div>No Photo Available</div>}              
               <div><button className="add-buton" ref="addButton" onClick={this.addGroup} type="submit">Add</button></div>
             </div>
         )

@@ -494,6 +494,126 @@ const states = [{
       "Reference" : {
         "value" : "26.0"
       },
+      "189512": {
+      "value": "Not Available",
+      "anomaly": "0"
+      },
+      "189612": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "189712": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "189812": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "189912": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "190012": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "190112": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "190212": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "190312": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "190412": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "190512": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "190612": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "190712": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "190812": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "190912": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "191012": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "191112": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "191212": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "191312": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "191412": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "191512": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "191612": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "191712": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "191812": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "191912": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "192012": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "192112": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "192212": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "192312": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
+      "192412": {
+        "value": "Not Available",
+        "anomaly": "0"
+      },
       "192512": {
       "value": "25.3",
       "anomaly": "-1.0"
