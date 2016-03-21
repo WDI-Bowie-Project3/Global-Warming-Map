@@ -35,17 +35,14 @@ const App = React.createClass({
     auth.login()
   },
 
-  // <li><Link to="/dashboard">Dashboard</Link> (authenticated)</li>
-  // not sure how we want use this
-
   render: function() {
     return (
       <div>
         <Nav loggedIn={this.state.loggedIn} />
         <nav className="aside-1">
         {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
-        <MapView />
         </nav>
+        <MapView />
       </div>
     )
   }
@@ -68,8 +65,6 @@ const Dashboard = React.createClass({
         xhr.setRequestHeader("Authorization", auth.getToken());
       }
     }).complete((data) => {
-      console.log(data);
-      // this.setState({ user: data.agent.email });
     })
   },
 
