@@ -6,7 +6,7 @@ const EventSearchBar = require('./EventSearchBar.js');
 const Nav = require('../nav.js');
 const $ = require('jquery');
 // const EventSearchResults = require('./eventSearchResults.js')
-const ShowEvents = require('./showEvent.js')
+// const ShowEvents = require('./showEvent.js')
 const _ = require('underscore')
 
 
