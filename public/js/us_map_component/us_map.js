@@ -13,27 +13,13 @@ console.log(mystates)
 const MapView = React.createClass({
   getInitialState: function(){
     return {
-      states: mystates
+      states: mystates,
+      currentyear: 0
     }
   },
 
-  dddMap : function(a) {
-    var states = a
-    console.log(mystates)
-    // AllTemperatures data for 100 years
-    var AllTemparatures = [];
-    // d3.json('./temperatures.json', function(error, states) {
-      // var states = this.state.states;
-      console.log('states', states)
-        $.each(states[0], function(key, data){
-          var anomaly = [] // this is a temporary array to keep anomaly for each year
-          _.each( data, function(d){
-            // console.log('d', d.anomaly)
-            anomaly.push(d.anomaly)
-          })  // var state = d3.selectAll('path').data(data[198612].anomaly)  //We should pass an array here
-          AllTemparatures.push(anomaly)
-        })
-      // })
+  dddMap : function(passObject, year) {
+    var states = passObject
 
     // code reference: https://github.com/cyrus-shahrivar/refugeeDataViz/blob/master/public/app.js  for order of the states
     ////////////////////////////////////////////////// VARIABLES //////////////////////////////////////////////////
@@ -82,11 +68,13 @@ const MapView = React.createClass({
       // if (error) throw error;
       g.append("g")
           .attr("id", "states")
-        .selectAll("path") // selects path elements, will make them if they don't exist
-          .data(topojson.feature(dataStates, dataStates.objects.states).features)    // iterates over geo feature
-        .enter().append("path")  // adds feature if it doesn't exist as an element  / // defines element as a path
+          .selectAll("path") // selects path elements, will make them if they don't exist
+            .data(topojson.feature(dataStates, dataStates.objects.states).features)    // iterates over geo feature
+            .enter().append("path")  // adds feature if it doesn't exist as an element  / // defines element as a path
           .attr("d", path)  // path generator translates geo data to SVG
           .on("click", clicked)
+          .transition()
+          .duration(2250)
           .attr("fill", function(d,i) {
             statesGeoArray.push(dataStates.objects.states.geometries[i].id);
 
@@ -95,7 +83,7 @@ const MapView = React.createClass({
               .range(['blue','yellow','#b30000'])  // We can use .range or rangePoints.
               return colors(temperatureArr.slice(0,51)[drawnOrderStatesNumberArray[i]]);
               // return "hsl(100,"+colors(firstTemparatures.slice(0,49)[drawnOrderStatesNumberArray[i]]) + "%,59%)";
-          });
+            });
 
       g.append("path")
           .datum(topojson.mesh(dataStates, dataStates.objects.states, function(a, b) { return a !== b; }))
@@ -103,13 +91,28 @@ const MapView = React.createClass({
           .attr("d", path);
     // });
     }
-    console.log(AllTemparatures.length, 'length or our new array')
 
+    console.log(states)
+    // AllTemperatures data for 100 years
+    var AllTemparatures = [];
+    // d3.json('./temperatures.json', function(error, states) {
+    // var states = this.state.states;
+    $.each(states[0], function(key, data){
+      var anomaly = [] // this is a temporary array to keep anomaly for each year
+      _.each( data, function(d){
+        // console.log('d', d.anomaly)
+        anomaly.push(d.anomaly)
+      })  // var state = d3.selectAll('path').data(data[198612].anomaly)  //We should pass an array here
+      AllTemparatures.push(anomaly)
+    })
+    console.log(AllTemparatures.length, 'length or our new array' , AllTemparatures)
+    // })
     //drawing the map with 2 sc timing
-    for (var i = 0 ; i < 51; i++) {
-    var interval = setInterval(drawTheMap(AllTemparatures[i])
-    , 20000);
-    }
+
+      drawTheMap(AllTemparatures[year])
+
+
+
     // zooming effect when click
     function clicked(d) {
       var x, y, k;
@@ -142,9 +145,13 @@ const MapView = React.createClass({
   //
   //   // this.setState({states: mystates})
   // },
+
   componentDidMount: function(){
-    console.log(this.state.states)
-      this.dddMap(this.state.states)
+    console.log('this is the states inside componentDidMount' ,this.state.states)
+     for(var year = 0; year<51; year++) {
+      this.setState({currentyear: year})
+      this.dddMap(this.state.states, year)
+    }
   },
   // drawthemap:  function(){
   //   this.dddMap()
@@ -152,7 +159,7 @@ const MapView = React.createClass({
   render: function(){
     console.log('connected to us_map.js')
     return (
-      <div id ="map" onLoad={this.dddMap}>
+      <div id ="map">
       </div>
     )
   }
