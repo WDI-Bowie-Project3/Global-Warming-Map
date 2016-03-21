@@ -79,9 +79,9 @@ const MapView = React.createClass({
             statesGeoArray.push(dataStates.objects.states.geometries[i].id);
 
             colors = d3.scale.linear()  //scale refers to pixels. other option is .orginal scale.
-              .domain([ d3.min(temperatureArr.slice(0,51)),0,d3.max(temperatureArr.slice(0,51))])  //Data difference, check the largers number and set it as mex.
-              .range(['blue','yellow','#b30000'])  // We can use .range or rangePoints.
-              return colors(temperatureArr.slice(0,51)[drawnOrderStatesNumberArray[i]]);
+              .domain([ d3.min(temperatureArr.slice(0,122)),d3.max(temperatureArr.slice(0,122))])  //Data difference, check the largers number and set it as mex.
+              .range(['#BDEEFF','#b30000'])  // We can use .range or rangePoints.
+              return colors(temperatureArr.slice(0,122)[drawnOrderStatesNumberArray[i]]);
               // return "hsl(100,"+colors(firstTemparatures.slice(0,49)[drawnOrderStatesNumberArray[i]]) + "%,59%)";
             });
 
@@ -110,7 +110,7 @@ const MapView = React.createClass({
         AllTemparatures[i].push(d.anomaly);
         i++;
       });
-      // console.log(AllTemparatures);
+      console.log(AllTemparatures);
 
 
 
