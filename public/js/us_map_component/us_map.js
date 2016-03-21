@@ -103,7 +103,6 @@ const MapView = React.createClass({
 
     drawTheMap(AllTemparatures[year])
 
-
     // zooming effect when click
     function clicked(d) {
       var x, y, k;
@@ -152,9 +151,9 @@ const MapView = React.createClass({
   render: function(){
     return (
       <div>
-      <h1>Year: {this.state.displayyear}</h1>
-      <div id ="map">
-      </div>
+        <h1>Year: {this.state.displayyear}</h1>
+        <div id ="map">
+        </div>
       </div>
     )
   }

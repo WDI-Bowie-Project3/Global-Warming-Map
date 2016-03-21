@@ -2,11 +2,10 @@
 const React = require('react');
 const ReactRouter = require('react-router');
 const Link = ReactRouter.Link;
-const EventSearchBar = require('./EventSearchBar.js');
+const EventSearchBar = require('./eventSearchBar.js');
 const Nav = require('../nav.js');
 const $ = require('jquery');
 const _ = require('underscore')
-
 
 const EventView = React.createClass({
   getInitialState: function(){
