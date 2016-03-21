@@ -10,12 +10,18 @@ const mystates = require('./test.js');
 console.log(mystates)
 
 const MapView = React.createClass({
+  getInitialState: function(){
+    return {
+      states: mystates
+    }
+  },
 
-  dddMap : function() {
+  dddMap : function(a) {
+    var states = a
     // AllTemperatures data for 100 years
     var AllTemparatures = [];
     d3.json('./temperatures.json', function(error, states) {
-      var states = mystates;
+      // var states = this.state.states;
       console.log('states', states)
         $.each(states[0], function(key, data){
           var anomaly = [] // this is a temporary array to keep anomaly for each year
@@ -128,16 +134,20 @@ const MapView = React.createClass({
           .style("stroke-width", 1.5 / k + "px");
     }
   },
-  // componentDidMount: function(){
-  //   this.drawthemap()
+  // componentWillMount: function(){
+  //   console.log(mystates);
+  //   // this.setState({states: mystates})
   // },
-  drawthemap:  function(){
-    this.dddMap()
-  },
+  // componentDidMount: function(){
+  //    this.dddMap(this.state.states)
+  // },
+  // drawthemap:  function(){
+  //   this.dddMap()
+  // },
   render: function(){
     console.log('connected to us_map.js')
     return (
-      <div id ="map" onLoad={this.drawthemap}>
+      <div id ="map" onLoad={this.dddMap}>
       </div>
     )
   }
