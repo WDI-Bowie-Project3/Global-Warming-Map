@@ -6,6 +6,7 @@ const _ = require('underscore');
 var d3 = require('d3');
 var topojson = require('topojson')
 const mystates = require('./test.js');
+const dataStates = require('./us-10m.json')
 
 console.log(mystates)
 
@@ -18,9 +19,10 @@ const MapView = React.createClass({
 
   dddMap : function(a) {
     var states = a
+    console.log(mystates)
     // AllTemperatures data for 100 years
     var AllTemparatures = [];
-    d3.json('./temperatures.json', function(error, states) {
+    // d3.json('./temperatures.json', function(error, states) {
       // var states = this.state.states;
       console.log('states', states)
         $.each(states[0], function(key, data){
@@ -31,7 +33,7 @@ const MapView = React.createClass({
           })  // var state = d3.selectAll('path').data(data[198612].anomaly)  //We should pass an array here
           AllTemparatures.push(anomaly)
         })
-      })
+      // })
 
     // code reference: https://github.com/cyrus-shahrivar/refugeeDataViz/blob/master/public/app.js  for order of the states
     ////////////////////////////////////////////////// VARIABLES //////////////////////////////////////////////////
@@ -76,17 +78,17 @@ const MapView = React.createClass({
     var colors;
     // draw the map
     function drawTheMap(temperatureArr) {
-    d3.json("/us-10m.json", function(error, us) {  // loads JSON map file
-      if (error) throw error;
+    // d3.json("/us-10m.json", function(error, us) {  // loads JSON map file
+      // if (error) throw error;
       g.append("g")
           .attr("id", "states")
         .selectAll("path") // selects path elements, will make them if they don't exist
-          .data(topojson.feature(us, us.objects.states).features)    // iterates over geo feature
+          .data(topojson.feature(dataStates, dataStates.objects.states).features)    // iterates over geo feature
         .enter().append("path")  // adds feature if it doesn't exist as an element  / // defines element as a path
           .attr("d", path)  // path generator translates geo data to SVG
           .on("click", clicked)
           .attr("fill", function(d,i) {
-            statesGeoArray.push(us.objects.states.geometries[i].id);
+            statesGeoArray.push(dataStates.objects.states.geometries[i].id);
 
             colors = d3.scale.linear()  //scale refers to pixels. other option is .orginal scale.
               .domain([ d3.min(temperatureArr.slice(0,51)),0,d3.max(temperatureArr.slice(0,49))])  //Data difference, check the largers number and set it as mex.
@@ -96,10 +98,10 @@ const MapView = React.createClass({
           });
 
       g.append("path")
-          .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+          .datum(topojson.mesh(dataStates, dataStates.objects.states, function(a, b) { return a !== b; }))
           .attr("id", "state-borders")
           .attr("d", path);
-    });
+    // });
     }
     console.log(AllTemparatures.length, 'length or our new array')
 
@@ -136,11 +138,14 @@ const MapView = React.createClass({
   },
   // componentWillMount: function(){
   //   console.log(mystates);
+  //   this.dddMap(this.state.states)
+  //
   //   // this.setState({states: mystates})
   // },
-  // componentDidMount: function(){
-  //    this.dddMap(this.state.states)
-  // },
+  componentDidMount: function(){
+    console.log(this.state.states)
+      this.dddMap(this.state.states)
+  },
   // drawthemap:  function(){
   //   this.dddMap()
   // },
