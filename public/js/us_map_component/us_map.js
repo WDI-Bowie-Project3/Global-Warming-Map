@@ -24,15 +24,15 @@ const MapView = React.createClass({
     ////////////////////////////////////////////////// VARIABLES //////////////////////////////////////////////////
     //holds the geographic objects for identifying the order of states drawn in the SVG
     var statesGeoArray = [];
-    //these two arrays are used to correspond state graphic drawing order to an alphabetical list of stats contained in the dataset
-    var drawnOrderStatesAbrArray = ["WASHINGTON", "MONTANA", "IDAHO", "NORTH DAKOTA", "MINNESOTA", "MAINE",
-                                    "MICHIGAN", "WISCONSIN", "OREGON", "SOUTH DAKOTA", "NEW HAMPSHIRE", "VERMONT",
-                                    "NEW YORK", "WYOMING", "IOWA","NEBRASKA", "MASSACHUSETTS", "ILLINOIS", "PENNSYLVANIA",
-                                    "CONNECTICUT", "RHODE ISLAND", "CALIFORNIA", "UTAH", "NEVADA", "OHIO", "INDIANA",
-                                    "NEW JERSEY","COLORADO","WEST VIRGINIA","MISSOURI", "KANSAS", "DELAWARE", "MARYLAND",
-                                    "VIRGINIA","KENTUCKY", "DISTRICT OF COLUMBIA", "ARIZONA", "OKLAHOMA", "NEW MEXICO",
-                                    "TENNESSEE", "NORTH CAROLINA", "TEXAS", "ARKANSAS","SOUTH CAROLINA", "ALABAMA","GEORGIA",
-                                    "MISSISSIPPI","LOUISIANA","FLORIDA","HAWAII","ALASKA"];
+    // these two arrays are used to correspond state graphic drawing order to an alphabetical list of stats contained in the dataset
+    // var drawnOrderStatesAbrArray = ["WASHINGTON", "MONTANA", "IDAHO", "NORTH DAKOTA", "MINNESOTA", "MAINE",
+    //                                 "MICHIGAN", "WISCONSIN", "OREGON", "SOUTH DAKOTA", "NEW HAMPSHIRE", "VERMONT",
+    //                                 "NEW YORK", "WYOMING", "IOWA","NEBRASKA", "MASSACHUSETTS", "ILLINOIS", "PENNSYLVANIA",
+    //                                 "CONNECTICUT", "RHODE ISLAND", "CALIFORNIA", "UTAH", "NEVADA", "OHIO", "INDIANA",
+    //                                 "NEW JERSEY","COLORADO","WEST VIRGINIA","MISSOURI", "KANSAS", "DELAWARE", "MARYLAND",
+    //                                 "VIRGINIA","KENTUCKY", "DISTRICT OF COLUMBIA", "ARIZONA", "OKLAHOMA", "NEW MEXICO",
+    //                                 "TENNESSEE", "NORTH CAROLINA", "TEXAS", "ARKANSAS","SOUTH CAROLINA", "ALABAMA","GEORGIA",
+    //                                 "MISSISSIPPI","LOUISIANA","FLORIDA","HAWAII","ALASKA"];
     var drawnOrderStatesNumberArray = [47,26,12,34,23,19,22,49,37,41,29,45,32,50,15,27,21,13,38,6,39,4,44,28,35,14,30,5,48,25,
                                       16,7,20,46,17,8,2,36,31,42,33,43,3,40,0,10,24,18,9,11,1];
 
@@ -76,9 +76,9 @@ const MapView = React.createClass({
             statesGeoArray.push(dataStates.objects.states.geometries[i].id);
 
             colors = d3.scale.linear()  //scale refers to pixels. other option is .orginal scale.
-              .domain([ d3.min(temperatureArr.slice(0,122)),d3.max(temperatureArr.slice(0,122))])  //Data difference, check the largers number and set it as mex.
+              .domain([ d3.min(temperatureArr.slice(0,51)),d3.max(temperatureArr.slice(0,51))])  //Data difference, check the largers number and set it as mex.
               .range(['#3385ff','#ff3333'])  // We can use .range or rangePoints.
-              return colors(temperatureArr.slice(0,122)[drawnOrderStatesNumberArray[i]]);
+              return colors(temperatureArr.slice(0,51)[drawnOrderStatesNumberArray[i]]);
             });
 
       g.append("path")
@@ -86,6 +86,7 @@ const MapView = React.createClass({
           .attr("id", "state-borders")
           .attr("d", path);
     }
+    //  line 92 could have been any state or number 122 -  just creating empty arrays off how many temps that state has, all states have same number except alaska
     // AllTemperatures data for 100 years
     var AllTemparatures = [];
     for (var i = 0; i < Object.keys(states[0]['NY']).length; i++) {
@@ -145,7 +146,7 @@ const MapView = React.createClass({
       this.dddMap(this.state.states, this.state.currentyear)
     }
   }
-    setInterval(yearChange.bind(this),175);
+    setInterval(yearChange.bind(this),1000);
   },
 
   render: function(){
