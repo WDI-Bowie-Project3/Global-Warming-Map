@@ -12,21 +12,6 @@ const basicTest1 = (req,res) => {
   res.send( `${req.method} succeeded, but is not yet implemented. test1` );
 }
 
-function makeRequest(req,res,next) {
-  let conn = {
-    url: 'https://api.meetup.com/2/events',
-    qs: {
-      key: process.env.apiKey,
-      sign: true,
-      group_urlname: 'Peoples-Climate-March-Satellite-Events'
-    },
-    json: true
-  };
-  request(conn, (err,res,body)=>{
-    res.events = body;
-    next()
-  })
-}
 
 //:3000/events
 eventRoutes.route('/')
