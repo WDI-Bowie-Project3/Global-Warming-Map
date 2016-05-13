@@ -54,8 +54,8 @@ function loginUser(req, res, next) {
         next()
       }
     })
-    .catch(() => {
-      console.error('error finding users')
+    .catch((error) => {
+      console.error(error,'error finding users')
     })
 }
 

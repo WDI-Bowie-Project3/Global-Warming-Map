@@ -146,7 +146,11 @@ const MapView = React.createClass({
       this.dddMap(this.state.states, this.state.currentyear)
     }
   }
-    setInterval(yearChange.bind(this),1000);
+  var myInterval = setInterval(yearChange.bind(this),1000);
+  },
+
+  componentWillUnMount: function(){
+    clearInterval();
   },
 
   render: function(){
